@@ -233,6 +233,7 @@
 
 	div.male :global(div.muze-axis-cell-left g.muze-discrete-axis g.muze-ticks text) {
 		fill: #000000 !important;
+		font-weight: 400 !important;
 	}
 
 	div :global(td.muze-grid-td) {
