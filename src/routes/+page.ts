@@ -2,13 +2,14 @@ import type { PageLoad } from './$types';
 
 const load: PageLoad = async ({ fetch }) => {
 	const schema = await fetch('/retirement_OECD/retirement_OECD_Extract_schema.json').then((res) =>
-		res.json()
+		res.text()
 	);
-	const data = await fetch('/retirement_OECD/retirement_OECD_Extract.json').then((res) =>
-		res.json()
-	);
+	console.log(schema);
+	// const data = await fetch('/retirement_OECD/retirement_OECD_Extract.json').then((res) =>
+	// 	res.json()
+	// );
 
-	return { schema, data };
+	return { schema: [], data: [[]] };
 };
 
 export { load };
