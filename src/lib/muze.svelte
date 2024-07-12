@@ -11,7 +11,6 @@
 		data: Array<Array<unknown>>;
 	} = $props();
 
-	const env = $derived(muze());
 	const DataModel = $derived(muze.DataModel);
 	const loadedData = $derived(DataModel.loadDataSync(data, schema));
 	const dm = $derived(
@@ -27,101 +26,46 @@
 				(obs: number | null) => (typeof obs === 'number' ? -obs : obs)
 			)
 	);
-	const femaleCanvas = $derived(
-		env
-			.canvas()
-			.data(dm)
-			.rows(['Country'])
-			.columns(['Neg Effective labour market exit age (female)'])
-			.layers([
-				{
-					mark: 'bar',
-					encoding: {
-						// color: {
-						// 	value: () => '#6366f1'
-						// },
-						color: 'OECD Average highlight (female)',
-						text: 'Effective labour market exit age (female)'
-					}
-				}
-			])
-			.config({
-				axes: {
-					x: { show: false, domain: [-80, 0] },
-					y: {
-						show: false,
-						compact: true,
-						fields: {
-							Country: {
-								ordering: {
-									type: 'field',
-									direction: 'desc',
-									field: { name: 'Effective labour market exit age (male)', aggregation: 'avg' }
-								}
-							}
-						}
-					}
-				},
-				legend: {
-					show: false,
-					color: {
-						domainRangeMap: {
-							False: '#6366f1',
-							True: '#16a34a'
-						}
-					}
-				},
-				interaction: {
-					highlight: {
-						sideEffects: {
-							tooltip: {
-								enabled: false
-							}
-						}
-					},
-					select: {
-						sideEffects: {
-							tooltip: {
-								enabled: false
-							}
-						}
-					}
-				}
-			})
-	);
+	const env = $derived(muze().data(dm));
 
-	const maleCanvas = $derived(
-		env
+	function createCanvas(config: {
+		gender: 'female' | 'male';
+		column: string;
+		color: string;
+		domain: [number, number];
+	}) {
+		return env
 			.canvas()
-			.data(dm)
 			.rows(['Country'])
-			.columns(['Effective labour market exit age (male)'])
+			.columns([config.column])
 			.layers([
 				{
 					mark: 'bar',
 					encoding: {
-						// color: {
-						// 	value: () => '#eab308'
-						// },
-						color: 'OECD Average highlight (male)',
-						text: 'Effective labour market exit age (male)'
+						color: `OECD Average highlight (${config.gender})`,
+						text: {
+							field: config.column,
+							formatter: ({
+								rawValue,
+								getRowData
+							}: {
+								rawValue: number;
+								getRowData: () => Record<string, string>;
+							}) => {
+								return getRowData().Country === 'Iceland'
+									? `${Math.abs(rawValue).toFixed(1)} years`
+									: `${Math.abs(rawValue).toFixed(1)}`;
+							}
+						}
 					}
 				}
 			])
 			.config({
-				rows: {
-					headers: {
-						show: false,
-						fields: {
-							Country: {
-								show: false
-							}
-						}
-					}
-				},
+				rows: { headers: { fields: { Country: { show: false } } } },
 				axes: {
-					x: { show: false, domain: [0, 80] },
+					x: { show: false, domain: config.domain },
 					y: {
+						show: config.gender === 'male',
 						showAxisName: false,
 						compact: true,
 						fields: {
@@ -138,50 +82,115 @@
 				legend: {
 					show: false,
 					color: {
-						domainRangeMap: {
-							False: '#eab308',
-							True: '#16a34a'
-						}
+						domainRangeMap: { False: config.color, True: '#16a34a' }
 					}
 				},
 				interaction: {
-					highlight: {
-						sideEffects: {
-							tooltip: {
-								enabled: false
-							}
-						}
-					},
-					select: {
-						sideEffects: {
-							tooltip: {
-								enabled: false
-							}
-						}
-					}
-				}
-			})
+					highlight: { sideEffects: { tooltip: { enabled: false } } },
+					select: { sideEffects: { tooltip: { enabled: false } } }
+				},
+				gridLines: { zeroLineColor: 'transparent' }
+			});
+	}
+
+	const femaleCanvas = $derived(
+		createCanvas({
+			gender: 'female',
+			column: 'Neg Effective labour market exit age (female)',
+			color: '#6366f1',
+			domain: [-85, 0]
+		})
+	);
+
+	const maleCanvas = $derived(
+		createCanvas({
+			gender: 'male',
+			column: 'Effective labour market exit age (male)',
+			color: '#eab308',
+			domain: [0, 85]
+		})
 	);
 
 	let femaleViz: HTMLDivElement | null = $state(null);
 	let maleViz: HTMLDivElement | null = $state(null);
 
+	const onAnimationEnd = ({
+		emitter: canvas
+	}: {
+		emitter: {
+			composition: () => {
+				visualGroup: {
+					placeholderInfo: () => {
+						values: Array<
+							Array<{
+								source: () => {
+									layers: () => Array<{ mount: () => SVGGElement }>;
+									_gridLines: Array<{ mount: () => SVGGElement }>;
+								};
+							}>
+						>;
+					};
+				};
+			};
+		};
+	}) => {
+		canvas
+			.composition()
+			.visualGroup.placeholderInfo()
+			.values.map((r) =>
+				r.map((c) => {
+					const visualUnit = c.source();
+					const lastMarkLayerContainer = visualUnit.layers().at(-1)?.mount().parentElement ?? null;
+					visualUnit._gridLines.map((gridLine) => {
+						const gridLineGroup = gridLine.mount();
+						[...gridLineGroup.children].map((child) => {
+							[...child.children].map(
+								(gridLinePathContainer: Element & { __data__?: { data: { xvalue: number } } }) => {
+									const gridValue = gridLinePathContainer.__data__?.data.xvalue;
+									if (gridLinePathContainer instanceof SVGGElement) {
+										gridLinePathContainer.style.strokeWidth = '2px';
+										if (gridValue === 0) {
+											gridLinePathContainer.style.stroke = '#000000';
+										} else if (
+											typeof gridValue === 'number' &&
+											(Math.abs(gridValue) === 20 ||
+												Math.abs(gridValue) === 40 ||
+												Math.abs(gridValue) === 60)
+										) {
+											gridLinePathContainer.style.strokeDasharray = '3, 2';
+											gridLinePathContainer.style.stroke = '#ffffff';
+										} else {
+											gridLinePathContainer.style.stroke = 'transparent';
+										}
+									}
+								}
+							);
+						});
+						const gridLineContainer = gridLineGroup.parentElement?.parentElement ?? null;
+						if (gridLineContainer != null) {
+							lastMarkLayerContainer?.insertAdjacentElement('afterend', gridLineContainer);
+						}
+					});
+				})
+			);
+	};
+
 	$effect(() => {
-		if (femaleViz) {
-			femaleCanvas.mount(femaleViz);
-		}
+		femaleCanvas.on('animationEnd', onAnimationEnd);
+		femaleCanvas.mount(femaleViz);
 
 		return () => {
+			femaleCanvas.off('animationEnd', onAnimationEnd);
 			femaleCanvas.dispose();
 		};
 	});
 
 	$effect(() => {
-		if (maleViz) {
-			maleCanvas.mount(maleViz);
-		}
+		maleCanvas.on('animationEnd', onAnimationEnd);
+		maleCanvas.mount(maleViz);
 
 		return () => {
+			maleCanvas.off('animationEnd', onAnimationEnd);
 			maleCanvas.dispose();
 		};
 	});
@@ -224,5 +233,9 @@
 
 	div.male :global(div.muze-axis-cell-left g.muze-discrete-axis g.muze-ticks text) {
 		fill: #000000 !important;
+	}
+
+	div :global(td.muze-grid-td) {
+		border-color: transparent !important;
 	}
 </style>
