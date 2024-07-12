@@ -21,7 +21,7 @@
 
 	$effect(() => {
 		if (mountElement) {
-			// canvas.mount(mountElement);
+			canvas.mount(mountElement);
 		}
 	});
 </script>
