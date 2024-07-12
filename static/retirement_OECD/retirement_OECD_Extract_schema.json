@@ -31,8 +31,8 @@
 	{ "name": "Age | Years", "type": "measure" },
 	{ "name": "Country name value", "type": "measure" },
 	{ "name": "Effective labour market exit age", "type": "measure" },
-	{ "name": "Effective labour market exit age (female)", "type": "measure" },
-	{ "name": "Effective labour market exit age (male)", "type": "measure" },
+	{ "name": "Effective labour market exit age (female)", "type": "measure", "defAggFn": "avg" },
+	{ "name": "Effective labour market exit age (male)", "type": "measure", "defAggFn": "avg" },
 	{ "name": "Effective labour market exit age (tooltip)", "type": "measure" },
 	{ "name": "Exit age - Female outliers max", "type": "measure" },
 	{ "name": "Obs Value", "type": "measure" }

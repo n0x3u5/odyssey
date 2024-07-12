@@ -8,6 +8,8 @@
 	const data = $derived(pageData.data);
 </script>
 
-{#await import('@viz/muze') then { default: muze }}
-	<Muze {muze} {schema} {data}></Muze>
-{/await}
+<div class="h-screen w-screen bg-amber-50 p-4">
+	{#await import('@viz/muze') then { default: muze }}
+		<Muze {muze} {schema} {data}></Muze>
+	{/await}
+</div>
