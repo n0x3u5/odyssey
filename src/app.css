@@ -1,0 +1,4 @@
+@import url('@viz/muze/muze.css');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

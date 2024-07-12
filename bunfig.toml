@@ -1,0 +1,2 @@
+[install.scopes]
+"@viz" = { token = "$PACKAGECLOUD_TOKEN", url = "https://packagecloud.io/modeanalytics/npm/npm/" }
