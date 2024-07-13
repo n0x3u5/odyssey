@@ -1,6 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import { page } from '$app/stores';
+	import { IconSpriteSheet } from '$lib';
 </script>
 
 <svelte:head>
@@ -23,5 +24,6 @@
 </svelte:head>
 
 <div class="bg-amber-50">
+	<IconSpriteSheet />
 	<slot></slot>
 </div>

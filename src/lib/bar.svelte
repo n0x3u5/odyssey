@@ -1,6 +1,26 @@
 <script lang="ts">
 	type Muze = typeof import('@viz/muze').default;
 
+	type CanvasEventParam = {
+		emitter: {
+			yAxes: () => Array<{ mount: () => SVGSVGElement }>;
+			composition: () => {
+				visualGroup: {
+					placeholderInfo: () => {
+						values: Array<
+							Array<{
+								source: () => {
+									layers: () => Array<{ mount: () => SVGGElement }>;
+									_gridLines: Array<{ mount: () => SVGGElement }>;
+								};
+							}>
+						>;
+					};
+				};
+			};
+		};
+	};
+
 	let {
 		muze,
 		schema = [],
@@ -114,37 +134,18 @@
 	let femaleViz: HTMLDivElement | null = $state(null);
 	let maleViz: HTMLDivElement | null = $state(null);
 
-	const onAnimationEnd = ({
-		emitter: canvas
-	}: {
-		emitter: {
-			composition: () => {
-				visualGroup: {
-					placeholderInfo: () => {
-						values: Array<
-							Array<{
-								source: () => {
-									layers: () => Array<{ mount: () => SVGGElement }>;
-									_gridLines: Array<{ mount: () => SVGGElement }>;
-								};
-							}>
-						>;
-					};
-				};
-			};
-		};
-	}) => {
+	const onAnimationEnd = ({ emitter: canvas }: CanvasEventParam) => {
 		canvas
 			.composition()
 			.visualGroup.placeholderInfo()
-			.values.map((r) =>
-				r.map((c) => {
+			.values.forEach((r) =>
+				r.forEach((c) => {
 					const visualUnit = c.source();
 					const lastMarkLayerContainer = visualUnit.layers().at(-1)?.mount().parentElement ?? null;
-					visualUnit._gridLines.map((gridLine) => {
+					visualUnit._gridLines.forEach((gridLine) => {
 						const gridLineGroup = gridLine.mount();
-						[...gridLineGroup.children].map((child) => {
-							[...child.children].map(
+						[...gridLineGroup.children].forEach((child) => {
+							[...child.children].forEach(
 								(gridLinePathContainer: Element & { __data__?: { data: { xvalue: number } } }) => {
 									const gridValue = gridLinePathContainer.__data__?.data.xvalue;
 									if (gridLinePathContainer instanceof SVGGElement) {
@@ -185,60 +186,44 @@
 		};
 	});
 
+	const onAfterRendered = ({ emitter: canvas }: CanvasEventParam) => {
+		const yAxes = canvas.yAxes();
+
+		yAxes.forEach((yAxis) => {
+			const yAxisEl = yAxis.mount();
+			const yAxisTexts = yAxisEl.querySelectorAll('text');
+			[...yAxisTexts].forEach((textElement) => {
+				if (textElement.textContent === 'OECD average') {
+					textElement.classList.add('!fill-green-600');
+					textElement.classList.add('!font-bold');
+				} else {
+					textElement.classList.add('!fill-black');
+					textElement.classList.add('!font-normal');
+				}
+			});
+		});
+	};
+
 	$effect(() => {
+		maleCanvas.on('afterRendered', onAfterRendered);
 		maleCanvas.on('animationEnd', onAnimationEnd);
 		maleCanvas.mount(maleViz);
 
 		return () => {
 			maleCanvas.off('animationEnd', onAnimationEnd);
+			maleCanvas.off('afterRendered', onAfterRendered);
 			maleCanvas.dispose();
 		};
 	});
 </script>
 
-<article
-	class="prose mx-auto flex h-screen w-screen max-w-4xl flex-col p-4 prose-h2:m-0 prose-h2:mb-4 prose-hr:mb-4 prose-hr:border-black"
->
-	<header>
-		<h3>Bar chart</h3>
-		<hr />
-		<h1>
-			EFFECTIVE AGE OF LABOUR MARKET EXIT ACROSS OECD COUNTRIES, FOR <span class="text-indigo-500"
-				>FEMALE</span
-			>
-			AND <span class="text-yellow-500">MALE</span>, 2022
-		</h1>
-		<div class="flex justify-between">
-			<h2>FEMALE</h2>
-			<h2>MALE</h2>
-		</div>
-	</header>
-	<main class="flex w-full grow">
-		<div class="not-prose grow-[427] md:grow-[467]" bind:this={femaleViz}></div>
-		<div class="male not-prose grow-[573] md:grow-[533]" bind:this={maleViz}></div>
-	</main>
-	<footer>
-		<p class="text-right text-xs">
-			Data Source: OECD Data Explorer | Citations: OECD Pensions at a glance 2023 Report | Powered
-			by: Muze
-		</p>
-	</footer>
-</article>
+<div class="grow-[427] md:grow-[467]" bind:this={femaleViz}></div>
+<div class="male grow-[573] md:grow-[533]" bind:this={maleViz}></div>
 
 <style lang="postcss">
 	div.male :global(div.muze-axis-cell-left g.muze-discrete-axis) {
 		text-anchor: middle;
 		transform: translate(22px, 0);
-	}
-
-	div.male :global(div.muze-axis-cell-left g.muze-discrete-axis g.muze-ticks text) {
-		fill: #000000 !important;
-		font-weight: 400 !important;
-	}
-
-	div.male :global(div.muze-axis-cell-left g.muze-discrete-axis g.muze-ticks:nth-child(20) text) {
-		fill: #16a34a !important;
-		font-weight: 600 !important;
 	}
 
 	div :global(td.muze-grid-td) {
