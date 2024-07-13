@@ -45,8 +45,10 @@
 		<hr />
 	</span>
 	<footer class="flex gap-52">
-		<div class="prose-sm max-w-none prose-h4:mb-0 prose-h4:font-black prose-p:text-black">
-			<h4>EFFECTIVE AGE OF LABOUR MARKET EXIT</h4>
+		<div
+			class="prose-sm max-w-none prose-h2:mb-0 prose-h2:text-sm prose-h2:font-black prose-p:text-black"
+		>
+			<h2>EFFECTIVE AGE OF LABOUR MARKET EXIT</h2>
 			<p>
 				The average effective age of retirement is defined as the average age of exit from the
 				labour force for workers initially aged 40 and over.
