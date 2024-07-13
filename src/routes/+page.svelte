@@ -29,19 +29,24 @@
 					</p>
 					<p>
 						This series of visualizations is a port of the
-						<a href="https://public.tableau.com/">Tableau Public</a>
+						<a class="hover:decoration-double" href="https://public.tableau.com/">Tableau Public</a>
 						Story
 						<a
+							class="hover:decoration-double"
 							href="https://public.tableau.com/app/profile/maryia.maziuk/viz/Onedataset20visualizationsRetirementAgesinOECDCountries/Onedataset20visualizations"
 						>
 							One dataset 20 visualizations | Retirement ages in OECD countries
 						</a>
 						created by Maryia Maziuk, which was in turn inspired by Nathan Yau’s piece on
-						<a href="https://flowingdata.com/">FlowingData</a>
+						<a class="hover:decoration-double" href="https://flowingdata.com/">FlowingData</a>
 						-
-						<a href="https://flowingdata.com/2017/01/24/one-dataset-visualized-25-ways/">
+						<a
+							class="hover:decoration-double"
+							href="https://flowingdata.com/2017/01/24/one-dataset-visualized-25-ways/"
+						>
 							One Dataset, Visualized 25 Ways
-						</a>.
+						</a>
+						.
 					</p>
 					<p>The dataset has 3 dimensions (country, sex, year) and a single measure (age).</p>
 				</section>
@@ -50,14 +55,23 @@
 		<hr />
 		<nav>
 			<aside>
-				<p class="text-right"><a href="/bar">Go to the first chart &gt;&gt;</a></p>
+				<p class="text-right">
+					<span class="inline-block transition-transform hover:translate-x-1">
+						<a href="/bar">
+							Go to the first chart
+							<svg class="inline size-4 rotate-180 align-text-bottom">
+								<use href="#icon-chevron-double-left" />
+							</svg>
+						</a>
+					</span>
+				</p>
 			</aside>
 			<div class="not-prose flex flex-wrap gap-4">
 				{#each pageInfos as { name, alt }}
 					<a class="inline-block size-28" href={`/${name}`}>
 						<img
 							{alt}
-							class="size-28 rounded border-2 border-gray-200 hover:opacity-80 hover:brightness-105"
+							class="size-28 rounded border-2 border-gray-200 transition-opacity hover:opacity-80 hover:brightness-105"
 							src={`/images/${name}.jpeg`}
 						/>
 					</a>

@@ -13,14 +13,14 @@
 >
 	<header>
 		<div class="flex items-center justify-between">
-			<span>
+			<span class="inline-block transition-transform hover:-translate-x-1">
 				<a class="text-gray-500 no-underline hover:text-black" href="/">
 					<svg class="inline size-4"><use href="#icon-arrow-left" /></svg>
 					<svg class="inline size-5"><use href="#icon-home" /></svg>
 				</a>
 			</span>
 			<h3>Bar Chart</h3>
-			<span>
+			<span class="inline-block transition-transform hover:translate-x-1">
 				<h4>
 					<a class="text-gray-500 hover:text-black" href="/bar">
 						Bar Chart <svg class="inline size-4 rotate-180"><use href="#icon-arrow-left" /></svg>
