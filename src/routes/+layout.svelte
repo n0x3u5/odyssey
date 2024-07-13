@@ -9,6 +9,8 @@
 		property="description"
 		content="Discover the versatility of Muze with 20 different visualizations answering questions about labour market exits in OECD countries."
 	/>
+	<meta property="og:type" content="website" />
+	<meta property="og:logo" content="/images/og-home.jpg" />
 	<meta property="og:url" content={$page.url.toString()} />
 	<meta property="twitter:card" content="summary_large_image" />
 	<meta property="og:image" content="/images/og-home.jpeg" />
