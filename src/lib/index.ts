@@ -1,3 +1,3 @@
-import Muze from './muze.svelte';
+import Bar from './bar.svelte';
 
-export { Muze };
+export { Bar };

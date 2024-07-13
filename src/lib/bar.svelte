@@ -3,8 +3,8 @@
 
 	let {
 		muze,
-		schema,
-		data
+		schema = [],
+		data = [[]]
 	}: {
 		muze: Muze;
 		schema: Array<{ name: string; type: 'dimension' | 'measure' }>;
