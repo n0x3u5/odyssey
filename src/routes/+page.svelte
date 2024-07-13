@@ -4,7 +4,7 @@
 		property="description"
 		content="Discover the versatility of Muze with 20 different visualizations answering questions about labour market exits in OECD countries."
 	/>
-	<meta property="og:image" content="/images/og-home.jpg" />
+	<meta property="og:image" content="/images/og-home.jpeg" />
 	<meta property="og:site_name" content="One Dataset, Twenty Muze Visualizations" />
 	<meta property="og:title" content="Home | One Dataset, Twenty Muze Visualizations" />
 	<meta
