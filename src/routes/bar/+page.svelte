@@ -8,9 +8,6 @@
 	const data = $derived(pageData.data);
 </script>
 
-<svelte:head>
-	<title>Muze Bar Chart | One Dataset, Twenty Muze Visualizations</title>
-</svelte:head>
 {#await import('@viz/muze') then { default: muze }}
 	<Bar {muze} {schema} {data}></Bar>
 {/await}
