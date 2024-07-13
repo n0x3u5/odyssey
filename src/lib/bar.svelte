@@ -197,7 +197,7 @@
 </script>
 
 <article
-	class="prose mx-auto flex h-full w-full max-w-4xl flex-col prose-h2:m-0 prose-h2:mb-4 prose-hr:mb-4 prose-hr:border-black"
+	class="prose mx-auto flex h-screen w-screen max-w-4xl flex-col p-4 prose-h2:m-0 prose-h2:mb-4 prose-hr:mb-4 prose-hr:border-black"
 >
 	<header>
 		<h3>Bar chart</h3>
@@ -214,8 +214,8 @@
 		</div>
 	</header>
 	<main class="flex w-full grow">
-		<div class="not-prose grow" bind:this={femaleViz}></div>
-		<div class="male not-prose grow" bind:this={maleViz}></div>
+		<div class="not-prose grow-[427] md:grow-[467]" bind:this={femaleViz}></div>
+		<div class="male not-prose grow-[573] md:grow-[533]" bind:this={maleViz}></div>
 	</main>
 	<footer>
 		<p class="text-right text-xs">
@@ -234,6 +234,11 @@
 	div.male :global(div.muze-axis-cell-left g.muze-discrete-axis g.muze-ticks text) {
 		fill: #000000 !important;
 		font-weight: 400 !important;
+	}
+
+	div.male :global(div.muze-axis-cell-left g.muze-discrete-axis g.muze-ticks:nth-child(20) text) {
+		fill: #16a34a !important;
+		font-weight: 600 !important;
 	}
 
 	div :global(td.muze-grid-td) {

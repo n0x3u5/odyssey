@@ -21,6 +21,7 @@
 		content="Discover the versatility of Muze with 20 different visualizations answering questions about labour market exits in OECD countries."
 	/>
 </svelte:head>
-<div class="h-screen w-screen bg-amber-50 p-4">
+
+<div class="bg-amber-50">
 	<slot></slot>
 </div>
