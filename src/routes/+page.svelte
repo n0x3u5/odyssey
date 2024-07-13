@@ -1,17 +1,3 @@
-<svelte:head>
-	<title>Home | One Dataset, Twenty Muze Visualizations</title>
-	<meta
-		property="description"
-		content="Discover the versatility of Muze with 20 different visualizations answering questions about labour market exits in OECD countries."
-	/>
-	<meta property="og:image" content="/images/og-home.jpeg" />
-	<meta property="og:site_name" content="One Dataset, Twenty Muze Visualizations" />
-	<meta property="og:title" content="Home | One Dataset, Twenty Muze Visualizations" />
-	<meta
-		property="og:description"
-		content="Discover the versatility of Muze with 20 different visualizations answering questions about labour market exits in OECD countries."
-	/>
-</svelte:head>
 <main class="prose m-auto max-w-4xl">
 	<article>
 		<div class="flex items-end gap-24">
