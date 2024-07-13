@@ -5,7 +5,7 @@
 
 <svelte:head>
 	<meta property="og:url" content={$page.url.toString()} />
-	<meta property="twitter:card" content="summary_large_image" />
+	<meta property="twitter:card" content="summary" />
 </svelte:head>
 <div class="h-screen w-screen bg-amber-50 p-4">
 	<slot></slot>
