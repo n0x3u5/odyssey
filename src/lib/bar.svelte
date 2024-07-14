@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { untrack } from 'svelte';
 	type Muze = typeof import('@viz/muze').default;
-
 	type CanvasEventParam = {
 		emitter: {
 			yAxes: () => Array<{ mount: () => SVGSVGElement }>;
@@ -46,18 +46,21 @@
 				(obs: number | null) => (typeof obs === 'number' ? -obs : obs)
 			)
 	);
-	const env = $derived(muze().data(dm));
+	const env = $derived(muze());
+	const femaleCanvas = $derived(env.canvas());
+	const maleCanvas = $derived(env.canvas());
 
-	const createCanvas = $derived.by(
+	const updateCanvas = $derived.by(
 		() =>
 			(config: {
+				canvas: any;
 				gender: 'female' | 'male';
 				column: string;
 				color: string;
 				domain: [number, number];
 			}) => {
-				return env
-					.canvas()
+				return config.canvas
+					.data(dm)
 					.rows(['Country'])
 					.columns([config.column])
 					.layers([
@@ -162,17 +165,28 @@
 	};
 
 	$effect(() => {
-		const femaleCanvas = createCanvas({
+		updateCanvas({
+			canvas: femaleCanvas,
 			gender: 'female',
 			column: 'Neg Effective labour market exit age (female)',
 			color: '#6366f1',
 			domain: [-85, 0]
 		});
+	});
+
+	$effect(() => {
 		femaleCanvas.on('animationEnd', onAnimationEnd);
-		femaleCanvas.mount(femaleViz);
 
 		return () => {
 			femaleCanvas.off('animationEnd', onAnimationEnd);
+		};
+	});
+
+	$effect(() => {
+		femaleViz;
+		untrack(() => femaleCanvas.mount(femaleViz));
+
+		return () => {
 			femaleCanvas.dispose();
 		};
 	});
@@ -196,20 +210,30 @@
 	};
 
 	$effect(() => {
-		const maleCanvas = createCanvas({
+		updateCanvas({
+			canvas: maleCanvas,
 			gender: 'male',
 			column: 'Effective labour market exit age (male)',
 			color: '#eab308',
 			domain: [0, 85]
 		});
+	});
 
+	$effect(() => {
 		maleCanvas.on('afterRendered', onAfterRendered);
 		maleCanvas.on('animationEnd', onAnimationEnd);
-		maleCanvas.mount(maleViz);
 
 		return () => {
 			maleCanvas.off('animationEnd', onAnimationEnd);
 			maleCanvas.off('afterRendered', onAfterRendered);
+		};
+	});
+
+	$effect(() => {
+		maleViz;
+		untrack(() => maleCanvas.mount(maleViz));
+
+		return () => {
 			maleCanvas.dispose();
 		};
 	});
