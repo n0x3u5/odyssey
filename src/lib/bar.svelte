@@ -1,21 +1,24 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
 	type Muze = typeof import('@viz/muze').default;
-	type CanvasEventParam = {
-		emitter: {
-			yAxes: () => Array<{ mount: () => SVGSVGElement }>;
-			composition: () => {
-				visualGroup: {
-					placeholderInfo: () => {
-						values: Array<
-							Array<{
-								source: () => {
-									layers: () => Array<{ mount: () => SVGGElement }>;
-									_gridLines: Array<{ mount: () => SVGGElement }>;
-								};
-							}>
-						>;
-					};
+	type Canvas = {
+		data: (data: unknown) => Canvas;
+		rows: (rows: Array<string>) => Canvas;
+		columns: (columns: Array<string>) => Canvas;
+		layers: (layers: Array<unknown>) => Canvas;
+		config: (config: Record<string, unknown>) => Canvas;
+		yAxes: () => Array<{ mount: () => SVGSVGElement }>;
+		composition: () => {
+			visualGroup: {
+				placeholderInfo: () => {
+					values: Array<
+						Array<{
+							source: () => {
+								layers: () => Array<{ mount: () => SVGGElement }>;
+								_gridLines: Array<{ mount: () => SVGGElement }>;
+							};
+						}>
+					>;
 				};
 			};
 		};
@@ -53,7 +56,7 @@
 	const updateCanvas = $derived.by(
 		() =>
 			(config: {
-				canvas: any;
+				canvas: Canvas;
 				gender: 'female' | 'male';
 				column: string;
 				color: string;
@@ -122,7 +125,7 @@
 	let femaleViz: HTMLDivElement | null = $state(null);
 	let maleViz: HTMLDivElement | null = $state(null);
 
-	const onAnimationEnd = ({ emitter: canvas }: CanvasEventParam) => {
+	const onAnimationEnd = ({ emitter: canvas }: { emitter: Canvas }) => {
 		canvas
 			.composition()
 			.visualGroup.placeholderInfo()
@@ -191,7 +194,7 @@
 		};
 	});
 
-	const onAfterRendered = ({ emitter: canvas }: CanvasEventParam) => {
+	const onAfterRendered = ({ emitter: canvas }: { emitter: Canvas }) => {
 		const yAxes = canvas.yAxes();
 
 		yAxes.forEach((yAxis) => {
