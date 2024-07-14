@@ -48,87 +48,72 @@
 	);
 	const env = $derived(muze().data(dm));
 
-	function createCanvas(config: {
-		gender: 'female' | 'male';
-		column: string;
-		color: string;
-		domain: [number, number];
-	}) {
-		return env
-			.canvas()
-			.rows(['Country'])
-			.columns([config.column])
-			.layers([
-				{
-					mark: 'bar',
-					encoding: {
-						color: `OECD Average highlight (${config.gender})`,
-						text: {
-							field: config.column,
-							formatter: ({
-								rawValue,
-								getRowData
-							}: {
-								rawValue: number;
-								getRowData: () => Record<string, string>;
-							}) => {
-								return getRowData().Country === 'Iceland'
-									? `${Math.abs(rawValue).toFixed(1)} years`
-									: `${Math.abs(rawValue).toFixed(1)}`;
-							}
-						}
-					}
-				}
-			])
-			.config({
-				rows: { headers: { fields: { Country: { show: false } } } },
-				axes: {
-					x: { show: false, domain: config.domain },
-					y: {
-						show: config.gender === 'male',
-						showAxisName: false,
-						compact: true,
-						fields: {
-							Country: {
-								ordering: {
-									type: 'field',
-									direction: 'desc',
-									field: { name: 'Effective labour market exit age (male)', aggregation: 'avg' }
+	const createCanvas = $derived.by(
+		() =>
+			(config: {
+				gender: 'female' | 'male';
+				column: string;
+				color: string;
+				domain: [number, number];
+			}) => {
+				return env
+					.canvas()
+					.rows(['Country'])
+					.columns([config.column])
+					.layers([
+						{
+							mark: 'bar',
+							encoding: {
+								color: `OECD Average highlight (${config.gender})`,
+								text: {
+									field: config.column,
+									formatter: ({
+										rawValue,
+										getRowData
+									}: {
+										rawValue: number;
+										getRowData: () => Record<string, string>;
+									}) => {
+										return getRowData().Country === 'Iceland'
+											? `${Math.abs(rawValue).toFixed(1)} years`
+											: `${Math.abs(rawValue).toFixed(1)}`;
+									}
 								}
 							}
 						}
-					}
-				},
-				legend: {
-					show: false,
-					color: {
-						domainRangeMap: { False: config.color, True: '#16a34a' }
-					}
-				},
-				interaction: {
-					highlight: { sideEffects: { tooltip: { enabled: false } } },
-					select: { sideEffects: { tooltip: { enabled: false } } }
-				},
-				gridLines: { zeroLineColor: 'transparent' }
-			});
-	}
-
-	const femaleCanvas = $derived(
-		createCanvas({
-			gender: 'female',
-			column: 'Neg Effective labour market exit age (female)',
-			color: '#6366f1',
-			domain: [-85, 0]
-		})
-	);
-
-	const maleCanvas = $derived(
-		createCanvas({
-			gender: 'male',
-			column: 'Effective labour market exit age (male)',
-			color: '#eab308',
-			domain: [0, 85]
-		})
+					])
+					.config({
+						rows: { headers: { fields: { Country: { show: false } } } },
+						axes: {
+							x: { show: false, domain: config.domain },
+							y: {
+								show: config.gender === 'male',
+								showAxisName: false,
+								compact: true,
+								fields: {
+									Country: {
+										ordering: {
+											type: 'field',
+											direction: 'desc',
+											field: { name: 'Effective labour market exit age (male)', aggregation: 'avg' }
+										}
+									}
+								}
+							}
+						},
+						legend: {
+							show: false,
+							color: {
+								domainRangeMap: { False: config.color, True: '#16a34a' }
+							}
+						},
+						interaction: {
+							highlight: { sideEffects: { tooltip: { enabled: false } } },
+							select: { sideEffects: { tooltip: { enabled: false } } }
+						},
+						gridLines: { zeroLineColor: 'transparent' }
+					});
+			}
 	);
 
 	let femaleViz: HTMLDivElement | null = $state(null);
@@ -177,6 +162,12 @@
 	};
 
 	$effect(() => {
+		const femaleCanvas = createCanvas({
+			gender: 'female',
+			column: 'Neg Effective labour market exit age (female)',
+			color: '#6366f1',
+			domain: [-85, 0]
+		});
 		femaleCanvas.on('animationEnd', onAnimationEnd);
 		femaleCanvas.mount(femaleViz);
 
@@ -205,6 +196,13 @@
 	};
 
 	$effect(() => {
+		const maleCanvas = createCanvas({
+			gender: 'male',
+			column: 'Effective labour market exit age (male)',
+			color: '#eab308',
+			domain: [0, 85]
+		});
+
 		maleCanvas.on('afterRendered', onAfterRendered);
 		maleCanvas.on('animationEnd', onAnimationEnd);
 		maleCanvas.mount(maleViz);
