@@ -47,6 +47,6 @@
 		"svelte-preprocess"
 	],
 	"dependencies": {
-		"@viz/muze": "^4.7.1-rc.2"
+		"@viz/muze": "^4.7.1"
 	}
 }
