@@ -11,9 +11,13 @@
 		{
 			name: 'dotplot',
 			alt: 'Dot Plot'
+		},
+		{
+			name: 'boxplot',
+			alt: 'Box Plot'
 		}
 	].concat(
-		Array(17).fill({
+		Array(16).fill({
 			name: 'bar',
 			alt: 'Bar Chart'
 		})
