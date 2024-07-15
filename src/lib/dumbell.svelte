@@ -55,10 +55,10 @@
 						color: { value: () => '#6366f1' },
 						text: {
 							field: 'Gender',
-							formatter: ({ formattedValue }) => {
+							formatter: ({ formattedValue }: { formattedValue: string }) => {
 								return formattedValue.toUpperCase();
 							},
-							filter: ({ rowData }) => {
+							filter: ({ rowData }: { rowData: { Country: string } }) => {
 								return rowData.Country === 'Iceland';
 							}
 						}
@@ -71,10 +71,10 @@
 						color: { value: () => '#eab308' },
 						text: {
 							field: 'Gender',
-							formatter: ({ formattedValue }) => {
+							formatter: ({ formattedValue }: { formattedValue: string }) => {
 								return formattedValue.toUpperCase();
 							},
-							filter: ({ rowData }) => {
+							filter: ({ rowData }: { rowData: { Country: string } }) => {
 								return rowData.Country === 'Iceland';
 							}
 						}
@@ -115,7 +115,7 @@
 	});
 </script>
 
-<div class="dumbell h-screen w-screen" bind:this={viz}></div>
+<div class="dumbell size-full" bind:this={viz}></div>
 
 <style>
 	div.dumbell :global(g.muze-layer-point) {

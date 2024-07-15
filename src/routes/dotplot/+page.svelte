@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Dumbell } from '$lib';
+	import { Dotplot } from '$lib';
 	import type { PageData } from './$types';
 
 	let { data: pageData }: { data: PageData } = $props();
@@ -10,6 +10,6 @@
 
 <main class="h-screen w-screen p-4">
 	{#await import('@viz/muze') then { default: muze }}
-		<Dumbell {muze} {schema} {data}></Dumbell>
+		<Dotplot {muze} {schema} {data}></Dotplot>
 	{/await}
 </main>

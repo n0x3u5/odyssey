@@ -7,9 +7,13 @@
 		{
 			name: 'dumbell',
 			alt: 'Dumbell'
+		},
+		{
+			name: 'dotplot',
+			alt: 'Dot Plot'
 		}
 	].concat(
-		Array(18).fill({
+		Array(17).fill({
 			name: 'bar',
 			alt: 'Bar Chart'
 		})
