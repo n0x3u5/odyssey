@@ -1,7 +1,10 @@
 <script lang="ts">
 	import '../app.css';
+	import type { Snippet } from 'svelte';
 	import { page } from '$app/stores';
 	import { IconSpriteSheet } from '$lib';
+
+	let { children }: { children: Snippet } = $props();
 </script>
 
 <svelte:head>
@@ -25,5 +28,5 @@
 
 <div class="bg-amber-50">
 	<IconSpriteSheet />
-	<slot></slot>
+	{@render children()}
 </div>

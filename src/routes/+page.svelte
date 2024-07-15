@@ -1,8 +1,19 @@
 <script lang="ts">
-	const pageInfos = Array(20).fill({
-		name: 'bar',
-		alt: 'Bar Chart'
-	});
+	const pageInfos = [
+		{
+			name: 'bar',
+			alt: 'Bar Chart'
+		},
+		{
+			name: 'dumbell',
+			alt: 'Dumbell'
+		}
+	].concat(
+		Array(18).fill({
+			name: 'bar',
+			alt: 'Bar Chart'
+		})
+	);
 </script>
 
 <main class="min-h-screen p-4">
