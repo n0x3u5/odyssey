@@ -8,6 +8,7 @@ import Arrowplot from './arrowplot.svelte';
 import SmallMultiples from './smallmultiples.svelte';
 import SlopeStrip from './slopestrip.svelte';
 import DivergingBar from './divergingbar.svelte';
+import Heatmap from './heatmap.svelte';
 
 export {
 	Bar,
@@ -19,5 +20,6 @@ export {
 	Arrowplot,
 	SmallMultiples,
 	SlopeStrip,
-	DivergingBar
+	DivergingBar,
+	Heatmap
 };
