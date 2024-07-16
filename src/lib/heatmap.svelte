@@ -43,7 +43,7 @@
 			.rows(['Country'])
 			.columns([['Year']])
 			.layers([{ mark: 'bar' }])
-			.color('Difference_From_OECD_Avg')
+			.color('difference_from_oecd_avg')
 			.config({
 				rows: { headers: { show: false, fields: { Country: { show: false } } } },
 				columns: { headers: { show: false } },
