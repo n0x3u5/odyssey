@@ -1,0 +1,6 @@
+[
+	{ "name": "Country", "type": "dimension" },
+	{ "name": "avg(Effective labour market exit age (female))", "type": "measure" },
+	{ "name": "avg(Effective labour market exit age (male))", "type": "measure" },
+	{ "name": "Region (group)", "type": "dimension" }
+]
