@@ -1,5 +1,9 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
+	import { median as d3Median } from 'd3-array';
+	import type { Canvas } from './types';
+
+	const SVG_NS = 'http://www.w3.org/2000/svg';
 
 	type Muze = typeof import('@viz/muze').default;
 
@@ -90,6 +94,51 @@
 					}
 				}
 			]);
+	});
+
+	const onRenderComplete = ({ emitter: canvas }: { emitter: Canvas }) => {
+		canvas
+			.composition()
+			.visualGroup.placeholderInfo()
+			.values.forEach((r) =>
+				r.forEach((c) => {
+					const visualUnit = c.source();
+					const rootSVG = visualUnit._graphics.rootSvg.node();
+					const { width: rootSVGWidth, x: rootSVGLeft } = rootSVG.getBBox();
+					const visualUnitLayers = visualUnit.layers();
+
+					visualUnitLayers.forEach((layer) => {
+						const yAxis = layer.axes().y;
+						const yScale = yAxis.scale();
+						const pointGroups = layer._points;
+						const yPxes = pointGroups.map((points) =>
+							yScale(d3Median(points, ({ data }) => data['Effective labour market exit age']))
+						);
+						const medianGroup = document.createElementNS(SVG_NS, 'g');
+						yPxes.forEach((yPx) => {
+							const medianLine = document.createElementNS(SVG_NS, 'line');
+							medianLine.setAttribute('x1', rootSVGLeft.toString());
+							medianLine.setAttribute('x2', (rootSVGLeft + rootSVGWidth).toString());
+							medianLine.setAttribute('y1', yPx.toString());
+							medianLine.setAttribute('y2', yPx.toString());
+							medianLine.setAttribute('stroke', 'black');
+							medianLine.setAttribute('stroke-width', '1');
+							medianLine.setAttribute('shape-rendering', 'crispEdges');
+							medianLine.classList.add('median-line');
+							medianGroup.appendChild(medianLine);
+						});
+						rootSVG.appendChild(medianGroup);
+					});
+				})
+			);
+	};
+
+	$effect(() => {
+		canvas.on('afterRendered', onRenderComplete);
+
+		return () => {
+			canvas.off('afterRendered', onRenderComplete);
+		};
 	});
 
 	$effect(() => {

@@ -1,28 +1,8 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
+	import type { Canvas } from './types';
+
 	type Muze = typeof import('@viz/muze').default;
-	type Canvas = {
-		data: (data: unknown) => Canvas;
-		rows: (rows: Array<string>) => Canvas;
-		columns: (columns: Array<string>) => Canvas;
-		layers: (layers: Array<unknown>) => Canvas;
-		config: (config: Record<string, unknown>) => Canvas;
-		yAxes: () => Array<{ mount: () => SVGSVGElement }>;
-		composition: () => {
-			visualGroup: {
-				placeholderInfo: () => {
-					values: Array<
-						Array<{
-							source: () => {
-								layers: () => Array<{ mount: () => SVGGElement }>;
-								_gridLines: Array<{ mount: () => SVGGElement }>;
-							};
-						}>
-					>;
-				};
-			};
-		};
-	};
 
 	let {
 		muze,
