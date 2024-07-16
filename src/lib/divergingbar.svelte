@@ -38,6 +38,13 @@
 			.color('SUM(Male - Female Diff)')
 			.config({
 				rows: {
+					headers: {
+						show: false,
+						fields: {
+							'Region (group)': { show: false },
+							Country: { show: false }
+						}
+					},
 					facets: {
 						fields: {
 							'Region (group)': {
@@ -60,6 +67,7 @@
 						showAxisName: false
 					},
 					y: {
+						showAxisName: false,
 						fields: {
 							Country: {
 								ordering: {
@@ -72,11 +80,15 @@
 					}
 				},
 				legend: {
+					show: false,
 					color: {
 						domain: [-2, 7],
 						range: ['#6366f1', '#d4d4d4', '#eab308'],
 						stops: [-2, 0, 7]
 					}
+				},
+				gridLines: {
+					zeroLineColor: '#000000'
 				}
 			});
 	});
