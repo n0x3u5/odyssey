@@ -1,0 +1,230 @@
+[
+	{
+		"Country": "Australia",
+		"avg(Effective labour market exit age (female))": 64.4,
+		"avg(Effective labour market exit age (male))": 65.1,
+		"Region (group)": "Oceania"
+	},
+	{
+		"Country": "Austria",
+		"avg(Effective labour market exit age (female))": 60.9,
+		"avg(Effective labour market exit age (male))": 61.6,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Belgium",
+		"avg(Effective labour market exit age (female))": 61.3,
+		"avg(Effective labour market exit age (male))": 61.1,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Canada",
+		"avg(Effective labour market exit age (female))": 63.5,
+		"avg(Effective labour market exit age (male))": 64.9,
+		"Region (group)": "N. America"
+	},
+	{
+		"Country": "Switzerland",
+		"avg(Effective labour market exit age (female))": 64,
+		"avg(Effective labour market exit age (male))": 64.6,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Chile",
+		"avg(Effective labour market exit age (female))": 63.7,
+		"avg(Effective labour market exit age (male))": 67.3,
+		"Region (group)": "Latin America"
+	},
+	{
+		"Country": "Colombia",
+		"avg(Effective labour market exit age (female))": 60.7,
+		"avg(Effective labour market exit age (male))": 67.8,
+		"Region (group)": "Latin America"
+	},
+	{
+		"Country": "Costa Rica",
+		"avg(Effective labour market exit age (female))": 62.2,
+		"avg(Effective labour market exit age (male))": 66.7,
+		"Region (group)": "Latin America"
+	},
+	{
+		"Country": "Czechia",
+		"avg(Effective labour market exit age (female))": 62.2,
+		"avg(Effective labour market exit age (male))": 64,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Germany",
+		"avg(Effective labour market exit age (female))": 63.4,
+		"avg(Effective labour market exit age (male))": 63.7,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Denmark",
+		"avg(Effective labour market exit age (female))": 63.8,
+		"avg(Effective labour market exit age (male))": 64.5,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Spain",
+		"avg(Effective labour market exit age (female))": 61.8,
+		"avg(Effective labour market exit age (male))": 62.1,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Estonia",
+		"avg(Effective labour market exit age (female))": 65.1,
+		"avg(Effective labour market exit age (male))": 64.6,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Finland",
+		"avg(Effective labour market exit age (female))": 63.8,
+		"avg(Effective labour market exit age (male))": 63.7,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "France",
+		"avg(Effective labour market exit age (female))": 62.2,
+		"avg(Effective labour market exit age (male))": 60.7,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "United Kingdom",
+		"avg(Effective labour market exit age (female))": 62.8,
+		"avg(Effective labour market exit age (male))": 63.2,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Greece",
+		"avg(Effective labour market exit age (female))": 59.7,
+		"avg(Effective labour market exit age (male))": 63.2,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Hungary",
+		"avg(Effective labour market exit age (female))": 60.8,
+		"avg(Effective labour market exit age (male))": 63.2,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Ireland",
+		"avg(Effective labour market exit age (female))": 64.9,
+		"avg(Effective labour market exit age (male))": 66.3,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Iceland",
+		"avg(Effective labour market exit age (female))": 65.8,
+		"avg(Effective labour market exit age (male))": 68.3,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Israel",
+		"avg(Effective labour market exit age (female))": 66,
+		"avg(Effective labour market exit age (male))": 66.5,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Italy",
+		"avg(Effective labour market exit age (female))": 62,
+		"avg(Effective labour market exit age (male))": 63,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Japan",
+		"avg(Effective labour market exit age (female))": 67,
+		"avg(Effective labour market exit age (male))": 68.3,
+		"Region (group)": "East Asia"
+	},
+	{
+		"Country": "Korea",
+		"avg(Effective labour market exit age (female))": 67.4,
+		"avg(Effective labour market exit age (male))": 65.4,
+		"Region (group)": "East Asia"
+	},
+	{
+		"Country": "Lithuania",
+		"avg(Effective labour market exit age (female))": 63.8,
+		"avg(Effective labour market exit age (male))": 63.4,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Luxembourg",
+		"avg(Effective labour market exit age (female))": 58.4,
+		"avg(Effective labour market exit age (male))": 60.5,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Latvia",
+		"avg(Effective labour market exit age (female))": 63.2,
+		"avg(Effective labour market exit age (male))": 61.7,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Mexico",
+		"avg(Effective labour market exit age (female))": 65.6,
+		"avg(Effective labour market exit age (male))": 66.9,
+		"Region (group)": "Latin America"
+	},
+	{
+		"Country": "Netherlands",
+		"avg(Effective labour market exit age (female))": 63.9,
+		"avg(Effective labour market exit age (male))": 65,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Norway",
+		"avg(Effective labour market exit age (female))": 62.4,
+		"avg(Effective labour market exit age (male))": 64.9,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "New Zealand",
+		"avg(Effective labour market exit age (female))": 65.5,
+		"avg(Effective labour market exit age (male))": 67.3,
+		"Region (group)": "Oceania"
+	},
+	{
+		"Country": "Poland",
+		"avg(Effective labour market exit age (female))": 61.2,
+		"avg(Effective labour market exit age (male))": 64.2,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Portugal",
+		"avg(Effective labour market exit age (female))": 64.6,
+		"avg(Effective labour market exit age (male))": 66.6,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Slovak Republic",
+		"avg(Effective labour market exit age (female))": 61.7,
+		"avg(Effective labour market exit age (male))": 61.7,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Slovenia",
+		"avg(Effective labour market exit age (female))": 59.7,
+		"avg(Effective labour market exit age (male))": 61.9,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Sweden",
+		"avg(Effective labour market exit age (female))": 64.5,
+		"avg(Effective labour market exit age (male))": 65.5,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "Türkiye",
+		"avg(Effective labour market exit age (female))": 60.2,
+		"avg(Effective labour market exit age (male))": 61.5,
+		"Region (group)": "Europe & Middle East"
+	},
+	{
+		"Country": "United States",
+		"avg(Effective labour market exit age (female))": 65.3,
+		"avg(Effective labour market exit age (male))": 65.2,
+		"Region (group)": "N. America"
+	}
+]
