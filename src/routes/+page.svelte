@@ -19,9 +19,13 @@
 		{
 			name: 'slopeplot',
 			alt: 'Slope Plot'
+		},
+		{
+			name: 'arrowplot',
+			alt: 'Arrow Plot'
 		}
 	].concat(
-		Array(15).fill({
+		Array(14).fill({
 			name: 'bar',
 			alt: 'Bar Chart'
 		})
