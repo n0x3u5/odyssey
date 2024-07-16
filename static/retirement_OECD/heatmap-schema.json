@@ -1,50 +1,26 @@
 [
-	{ "name": "Age", "type": "dimension" },
-	{ "name": "Age | Years", "type": "measure", "defAggFn": "avg" },
-	{ "name": "Column (decade year) 2", "type": "dimension" },
-	{ "name": "Country", "type": "dimension" },
-	{ "name": "Country (max female)", "type": "dimension" },
-	{ "name": "Country Code", "type": "dimension" },
-	{ "name": "Country highlight", "type": "dimension" },
-	{ "name": "Country name value", "type": "dimension" },
-	{ "name": "Country: OECD Avg ", "type": "dimension" },
-	{ "name": "Country: other than OECD Avg", "type": "dimension" },
-	{ "name": "Decades only : T|F", "type": "dimension" },
-	{ "name": "Effective labour market exit age", "type": "measure", "defAggFn": "avg" },
 	{
-		"name": "Effective labour market exit age (bins)",
-		"type": "dimension",
-		"subtype": "binned",
-		"binSize": 1
+		"name": "Country",
+		"type": "dimension"
 	},
-	{ "name": "Effective labour market exit age (female)", "type": "measure", "defAggFn": "avg" },
-	{ "name": "Effective labour market exit age (male)", "type": "measure", "defAggFn": "avg" },
-	{ "name": "Effective labour market exit age (tooltip)", "type": "measure", "defAggFn": "avg" },
-	{ "name": "Every 5 years T|F", "type": "dimension" },
-	{ "name": "Exit age - Female outliers max", "type": "measure", "defAggFn": "avg" },
-	{ "name": "Gender", "type": "dimension" },
-	{ "name": "Gender filter", "type": "dimension" },
-	{ "name": "Measure1", "type": "dimension" },
-	{ "name": "OECD Average highlight", "type": "dimension" },
-	{ "name": "OECD Average highlight (female)", "type": "dimension" },
-	{ "name": "OECD Average highlight (male)", "type": "dimension" },
-	{ "name": "OECD Member: T|F", "type": "dimension" },
-	{ "name": "Obs Value", "type": "measure", "defAggFn": "avg" },
-	{ "name": "Ref Area", "type": "dimension" },
-	{ "name": "Reference area", "type": "dimension" },
-	{ "name": "Region (group)", "type": "dimension" },
-	{ "name": "Row (decade year) 2", "type": "dimension" },
-	{ "name": "Sex", "type": "dimension" },
-	{ "name": "UPPER Country", "type": "dimension" },
-	{ "name": "UPPER(Gender)", "type": "dimension" },
-	{ "name": "Year", "type": "dimension", "subtype": "temporal", "format": "%d-%m-%Y" },
-	{ "name": "Year (2 figures)", "type": "dimension", "subtype": "temporal", "format": "'%y" },
-	{ "name": "Year (each 5 years)", "type": "dimension" },
-	{ "name": "Year Int", "type": "dimension" },
 	{
-		"name": "Difference_From_OECD_Avg",
+		"name": "Year",
+		"type": "dimension",
+		"subtype": "temporal",
+		"format": "%d-%m-%Y"
+	},
+	{ "name": "Gender", "type": "dimension" },
+	{
+		"name": "Effective labour market exit age",
+		"type": "measure"
+	},
+	{
+		"name": "avg_oecd_exit_age",
+		"type": "measure"
+	},
+	{
+		"name": "difference_from_oecd_avg",
 		"displayName": "Difference from OECD average age",
-		"type": "measure",
-		"defAggFn": "avg"
+		"type": "measure"
 	}
 ]
