@@ -1,0 +1,40 @@
+[
+	{
+		"name": "count(DISTINCT Country)",
+		"type": "measure"
+	},
+	{
+		"name": "Country",
+		"type": "dimension"
+	},
+	{
+		"name": "Effective labour market exit age (bins)",
+		"type": "dimension",
+		"subtype": "binned",
+		"binSize": 1
+	},
+	{
+		"name": "avg(Row (decade year) 2)",
+		"type": "measure"
+	},
+	{
+		"name": "Gender",
+		"type": "dimension"
+	},
+	{
+		"name": "avg(Column (decade year) 2)",
+		"type": "measure"
+	},
+	{
+		"name": "Decades only : T|F",
+		"type": "dimension"
+	},
+	{
+		"name": "Country: OECD Avg ",
+		"type": "dimension"
+	},
+	{
+		"name": "avg(Year Int)",
+		"type": "dimension"
+	}
+]
