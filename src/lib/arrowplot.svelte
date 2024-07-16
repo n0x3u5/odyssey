@@ -161,24 +161,4 @@
 	});
 </script>
 
-<div class="dumbell size-full" bind:this={viz}></div>
-
-<style>
-	div.dumbell :global(g.muze-layer-point) {
-		fill-opacity: 1;
-	}
-
-	div.dumbell :global(g.muze-layer-point) {
-		fill-opacity: 1;
-	}
-
-	div.dumbell :global(g.muze-layer-labels-group .muze-layer-labels:first-child text) {
-		fill: #6366f1 !important;
-		font-weight: 700;
-	}
-
-	div.dumbell :global(g.muze-layer-labels-group .muze-layer-labels:last-child text) {
-		fill: #eab308 !important;
-		font-weight: 700;
-	}
-</style>
+<div class="arrowplot size-full" bind:this={viz}></div>

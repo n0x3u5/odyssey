@@ -23,9 +23,13 @@
 		{
 			name: 'arrowplot',
 			alt: 'Arrow Plot'
+		},
+		{
+			name: 'smallmultiples',
+			alt: 'Small Multiples'
 		}
 	].concat(
-		Array(14).fill({
+		Array(13).fill({
 			name: 'bar',
 			alt: 'Bar Chart'
 		})

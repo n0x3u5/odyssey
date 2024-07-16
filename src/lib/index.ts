@@ -5,5 +5,6 @@ import Dotplot from './dotplot.svelte';
 import Boxplot from './boxplot.svelte';
 import Slopeplot from './slopeplot.svelte';
 import Arrowplot from './arrowplot.svelte';
+import SmallMultiples from './smallmultiples.svelte';
 
-export { Bar, IconSpriteSheet, Dumbell, Dotplot, Boxplot, Slopeplot, Arrowplot };
+export { Bar, IconSpriteSheet, Dumbell, Dotplot, Boxplot, Slopeplot, Arrowplot, SmallMultiples };
