@@ -22,7 +22,7 @@
 		},
 		{
 			name: 'arrowplot',
-			alt: 'Arrow Plot'
+			alt: 'Lollipop Plot'
 		},
 		{
 			name: 'smallmultiples',
