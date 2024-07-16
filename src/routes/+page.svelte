@@ -27,13 +27,12 @@
 		{
 			name: 'smallmultiples',
 			alt: 'Small Multiples'
+		},
+		{
+			name: 'slopestrip',
+			alt: 'Slope and Strip Hybrid'
 		}
-	].concat(
-		Array(13).fill({
-			name: 'bar',
-			alt: 'Bar Chart'
-		})
-	);
+	];
 </script>
 
 <main class="min-h-screen p-4">
@@ -97,17 +96,20 @@
 					</span>
 				</p>
 			</aside>
-			<div class="not-prose flex flex-wrap gap-4">
+			<ul>
 				{#each pageInfos as { name, alt }}
-					<a class="inline-block size-28" href={`/${name}`}>
-						<img
+					<li>
+						<a href={`/${name}`}>
+							<!-- <img
 							{alt}
 							class="size-28 rounded border-2 border-gray-200 transition-opacity hover:opacity-80 hover:brightness-105"
 							src={`/images/${name}.jpeg`}
-						/>
-					</a>
+						/> -->
+							{alt}
+						</a>
+					</li>
 				{/each}
-			</div>
+			</ul>
 		</nav>
 		<hr />
 	</section>
