@@ -47,6 +47,10 @@
 		{
 			name: 'bivariatearea',
 			alt: 'Bivariate Area Chart'
+		},
+		{
+			name: 'area',
+			alt: 'Area Chart'
 		}
 	];
 </script>
@@ -61,7 +65,7 @@
 						<br />
 						DATASET,
 						<br />
-						<span class="text-indigo-500">TWELVE</span>
+						<span class="text-indigo-500">THIRTEEN</span>
 						<span class="font-extralight underline"><em>MUZE</em></span>
 						<br />
 						VISUALIZATIONS
@@ -69,7 +73,7 @@
 				</header>
 				<section>
 					<p>
-						Here are 12 different visualizations, powered by <strong>Muze</strong>, created from a
+						Here are 13 different visualizations, powered by <strong>Muze</strong>, created from a
 						single dataset on labour market exit ages in OECD countries by year. Each chart shows
 						the dataset from a different perspective, answering a different question.
 					</p>

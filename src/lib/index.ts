@@ -11,6 +11,7 @@ import DivergingBar from './divergingbar.svelte';
 import BivariateArea from './bivariatearea.svelte';
 import Heatmap from './heatmap.svelte';
 import Scatter from './scatter.svelte';
+import Area from './area.svelte';
 
 export {
 	Bar,
@@ -25,5 +26,6 @@ export {
 	DivergingBar,
 	BivariateArea,
 	Heatmap,
-	Scatter
+	Scatter,
+	Area
 };

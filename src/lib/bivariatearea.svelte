@@ -175,8 +175,6 @@
 
 	let viz: HTMLDivElement | null = $state(null);
 
-	window.canvas = canvas;
-
 	$effect(() => {
 		canvas
 			.data(dm)
