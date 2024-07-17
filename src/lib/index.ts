@@ -12,6 +12,7 @@ import BivariateArea from './bivariatearea.svelte';
 import Heatmap from './heatmap.svelte';
 import Scatter from './scatter.svelte';
 import Area from './area.svelte';
+import WinLoss from './winloss.svelte';
 
 export {
 	Bar,
@@ -27,5 +28,6 @@ export {
 	BivariateArea,
 	Heatmap,
 	Scatter,
-	Area
+	Area,
+	WinLoss
 };
