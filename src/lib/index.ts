@@ -14,6 +14,7 @@ import Scatter from './scatter.svelte';
 import Area from './area.svelte';
 import WinLoss from './winloss.svelte';
 import StripPlot from './stripplot.svelte';
+import HighlightSmallMultiples from './highlightsmallmultiples.svelte';
 
 export {
 	Bar,
@@ -31,5 +32,6 @@ export {
 	Scatter,
 	Area,
 	WinLoss,
-	StripPlot
+	StripPlot,
+	HighlightSmallMultiples
 };

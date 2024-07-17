@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Country",
+    "type": "dimension"
+  },
+  {
+    "name": "Gender",
+    "type": "dimension"
+  },
+  {
+    "name": "Gender filter",
+    "type": "dimension"
+  },
+  {
+    "name": "Measure1",
+    "type": "dimension"
+  },
+  {
+    "name": "Reference area",
+    "type": "dimension"
+  },
+  {
+    "name": "Sex",
+    "type": "dimension"
+  },
+  {
+    "name": "Smh Column",
+    "type": "dimension"
+  },
+  {
+    "name": "Smh Row",
+    "type": "dimension"
+  },
+  {
+    "name": "Table",
+    "type": "dimension"
+  },
+  {
+    "name": "Year",
+    "type": "dimension",
+    "subtype": "temporal",
+    "format": "%d-%m-%Y"
+  },
+  {
+    "name": "Year Int",
+    "type": "measure"
+  },
+  {
+    "name": "Age | Years",
+    "type": "measure"
+  },
+  {
+    "name": "Country name value",
+    "type": "measure",
+    "defAggFn": "avg"
+  },
+  {
+    "name": "Effective labour market exit age",
+    "type": "measure",
+    "defAggFn": "avg"
+  },
+  {
+    "name": "Obs Value",
+    "type": "measure"
+  }
+]
