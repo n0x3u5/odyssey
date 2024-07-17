@@ -10,6 +10,7 @@ import SlopeStrip from './slopestrip.svelte';
 import DivergingBar from './divergingbar.svelte';
 import BivariateArea from './bivariatearea.svelte';
 import Heatmap from './heatmap.svelte';
+import Scatter from './scatter.svelte';
 
 export {
 	Bar,
@@ -23,5 +24,6 @@ export {
 	SlopeStrip,
 	DivergingBar,
 	BivariateArea,
-	Heatmap
+	Heatmap,
+	Scatter
 };
