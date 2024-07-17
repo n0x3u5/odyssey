@@ -13,6 +13,7 @@ import Heatmap from './heatmap.svelte';
 import Scatter from './scatter.svelte';
 import Area from './area.svelte';
 import WinLoss from './winloss.svelte';
+import StripPlot from './stripplot.svelte';
 
 export {
 	Bar,
@@ -29,5 +30,6 @@ export {
 	Heatmap,
 	Scatter,
 	Area,
-	WinLoss
+	WinLoss,
+	StripPlot
 };

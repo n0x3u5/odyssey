@@ -55,6 +55,10 @@
 		{
 			name: 'winloss',
 			alt: 'Win-Loss Chart'
+		},
+		{
+			name: 'stripplot',
+			alt: 'Strip Plot'
 		}
 	];
 </script>
@@ -69,7 +73,7 @@
 						<br />
 						DATASET,
 						<br />
-						<span class="text-indigo-500">FOURTEEN</span>
+						<span class="text-indigo-500">FIFTEEN</span>
 						<span class="font-extralight underline"><em>MUZE</em></span>
 						<br />
 						VISUALIZATIONS
@@ -77,7 +81,7 @@
 				</header>
 				<section>
 					<p>
-						Here are 14 different visualizations, powered by <strong>Muze</strong>, created from a
+						Here are 15 different visualizations, powered by <strong>Muze</strong>, created from a
 						single dataset on labour market exit ages in OECD countries by year. Each chart shows
 						the dataset from a different perspective, answering a different question.
 					</p>
