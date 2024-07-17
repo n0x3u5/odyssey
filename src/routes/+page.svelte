@@ -37,6 +37,10 @@
 			alt: 'Diverging Bar Chart'
 		},
 		{
+			name: 'bivariatearea',
+			alt: 'Bivariate Area Chart'
+		},
+		{
 			name: 'heatmap',
 			alt: 'Heatmap'
 		}
@@ -53,7 +57,7 @@
 						<br />
 						DATASET,
 						<br />
-						<span class="text-indigo-500">TEN</span>
+						<span class="text-indigo-500">ELEVEN</span>
 						<span class="font-extralight underline"><em>MUZE</em></span>
 						<br />
 						VISUALIZATIONS
@@ -61,7 +65,7 @@
 				</header>
 				<section>
 					<p>
-						Here are 10 different visualizations, powered by <strong>Muze</strong>, created from a
+						Here are 11 different visualizations, powered by <strong>Muze</strong>, created from a
 						single dataset on labour market exit ages in OECD countries by year. Each chart shows
 						the dataset from a different perspective, answering a different question.
 					</p>
