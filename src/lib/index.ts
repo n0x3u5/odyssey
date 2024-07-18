@@ -17,6 +17,7 @@ import StripPlot from './stripplot.svelte';
 import HighlightSmallMultiples from './highlightsmallmultiples.svelte';
 import HighlightDotPlot from './highlightdotplot.svelte';
 import Lollipop from './lollipop.svelte';
+import TileMap from './tilemap.svelte';
 
 export {
   Bar,
@@ -38,4 +39,5 @@ export {
   HighlightSmallMultiples,
   HighlightDotPlot,
   Lollipop,
+  TileMap
 };
