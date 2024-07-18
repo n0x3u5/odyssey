@@ -1,0 +1,9 @@
+[
+	{ "name": "Country", "type": "dimension" },
+	{ "name": "Gender", "type": "dimension" },
+	{ "name": "Year", "type": "dimension", "subtype": "temporal", "format": "%d-%m-%Y" },
+	{ "name": "Year Int", "type": "measure", "defAggFn": "avg" },
+	{ "name": "avg_exit_age", "type": "measure" },
+	{ "name": "prev_year_exit_age", "type": "measure" },
+	{ "name": "year_over_year_change", "type": "measure" }
+]

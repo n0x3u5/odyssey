@@ -13,6 +13,10 @@
 			alt: 'Dot Plot'
 		},
 		{
+			name: 'highlightdotplot',
+			alt: 'Dot Plot with Highlight'
+		},
+		{
 			name: 'boxplot',
 			alt: 'Box Plot'
 		},
@@ -21,24 +25,48 @@
 			alt: 'Slope Plot'
 		},
 		{
-			name: 'arrowplot',
-			alt: 'Lollipop Plot'
+			name: 'heatmap',
+			alt: 'Heatmap'
 		},
 		{
-			name: 'smallmultiples',
-			alt: 'Small Multiples'
+			name: 'arrowplot',
+			alt: 'Lollipop Plot'
 		},
 		{
 			name: 'slopestrip',
 			alt: 'Slope and Strip Hybrid'
 		},
 		{
+			name: 'smallmultiples',
+			alt: 'Small Multiples'
+		},
+		{
+			name: 'highlightsmallmultiples',
+			alt: 'Small Multiples with Highlight'
+		},
+		{
+			name: 'scatter',
+			alt: 'Scatter'
+		},
+		{
 			name: 'divergingbar',
 			alt: 'Diverging Bar Chart'
 		},
 		{
-			name: 'heatmap',
-			alt: 'Heatmap'
+			name: 'bivariatearea',
+			alt: 'Bivariate Area Chart'
+		},
+		{
+			name: 'area',
+			alt: 'Area Chart'
+		},
+		{
+			name: 'winloss',
+			alt: 'Win-Loss Chart'
+		},
+		{
+			name: 'stripplot',
+			alt: 'Strip Plot'
 		}
 	];
 </script>
@@ -53,7 +81,7 @@
 						<br />
 						DATASET,
 						<br />
-						<span class="text-indigo-500">TEN</span>
+						<span class="text-indigo-500">SEVENTEEN</span>
 						<span class="font-extralight underline"><em>MUZE</em></span>
 						<br />
 						VISUALIZATIONS
@@ -61,7 +89,7 @@
 				</header>
 				<section>
 					<p>
-						Here are 10 different visualizations, powered by <strong>Muze</strong>, created from a
+						Here are 17 different visualizations, powered by <strong>Muze</strong>, created from a
 						single dataset on labour market exit ages in OECD countries by year. Each chart shows
 						the dataset from a different perspective, answering a different question.
 					</p>

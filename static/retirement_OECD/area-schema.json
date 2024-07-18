@@ -1,0 +1,7 @@
+[
+	{ "name": "count(DISTINCT Country)", "type": "measure" },
+	{ "name": "avg(Year Int)", "type": "measure", "defAggFn": "avg" },
+	{ "name": "Year", "type": "dimension", "subtype": "temporal", "format": "%d-%m-%Y" },
+	{ "name": "Gender", "type": "dimension" },
+	{ "name": "sum(Effective labour market exit age)", "type": "measure" }
+]
