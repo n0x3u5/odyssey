@@ -15,23 +15,25 @@ import Area from './area.svelte';
 import WinLoss from './winloss.svelte';
 import StripPlot from './stripplot.svelte';
 import HighlightSmallMultiples from './highlightsmallmultiples.svelte';
+import HighlightDotPlot from './highlightdotplot.svelte';
 
 export {
-	Bar,
-	IconSpriteSheet,
-	Dumbell,
-	Dotplot,
-	Boxplot,
-	Slopeplot,
-	Arrowplot,
-	SmallMultiples,
-	SlopeStrip,
-	DivergingBar,
-	BivariateArea,
-	Heatmap,
-	Scatter,
-	Area,
-	WinLoss,
-	StripPlot,
-	HighlightSmallMultiples
+  Bar,
+  IconSpriteSheet,
+  Dumbell,
+  Dotplot,
+  Boxplot,
+  Slopeplot,
+  Arrowplot,
+  SmallMultiples,
+  SlopeStrip,
+  DivergingBar,
+  BivariateArea,
+  Heatmap,
+  Scatter,
+  Area,
+  WinLoss,
+  StripPlot,
+  HighlightSmallMultiples,
+  HighlightDotPlot
 };
