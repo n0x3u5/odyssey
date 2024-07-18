@@ -16,6 +16,7 @@ import WinLoss from './winloss.svelte';
 import StripPlot from './stripplot.svelte';
 import HighlightSmallMultiples from './highlightsmallmultiples.svelte';
 import HighlightDotPlot from './highlightdotplot.svelte';
+import Lollipop from './lollipop.svelte';
 
 export {
   Bar,
@@ -35,5 +36,6 @@ export {
   WinLoss,
   StripPlot,
   HighlightSmallMultiples,
-  HighlightDotPlot
+  HighlightDotPlot,
+  Lollipop,
 };
