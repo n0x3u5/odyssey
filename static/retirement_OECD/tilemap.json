@@ -1,0 +1,1022 @@
+[
+    {
+        "Year Int": 2022,
+        "Code": "TUR",
+        "Country": "Türkiye",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 61.5,
+        "Point": "Point",
+        "Latitude (generated)": -7,
+        "Longitude (generated)": 9
+    },
+    {
+        "Year Int": 2022,
+        "Code": "SWE",
+        "Country": "Sweden",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 65.5,
+        "Point": "Point",
+        "Latitude (generated)": -1,
+        "Longitude (generated)": 6
+    },
+    {
+        "Year Int": 2022,
+        "Code": "SVN",
+        "Country": "Slovenia",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 61.9,
+        "Point": "Point",
+        "Latitude (generated)": -7,
+        "Longitude (generated)": 4
+    },
+    {
+        "Year Int": 2022,
+        "Code": "SVK",
+        "Country": "Slovak Republic",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 61.7,
+        "Point": "Point",
+        "Latitude (generated)": -5,
+        "Longitude (generated)": 6
+    },
+    {
+        "Year Int": 2022,
+        "Code": "PRT",
+        "Country": "Portugal",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 66.6,
+        "Point": "Point",
+        "Latitude (generated)": -6,
+        "Longitude (generated)": 1
+    },
+    {
+        "Year Int": 2022,
+        "Code": "POL",
+        "Country": "Poland",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 64.2,
+        "Point": "Point",
+        "Latitude (generated)": -4,
+        "Longitude (generated)": 6
+    },
+    {
+        "Year Int": 2022,
+        "Code": "NOR",
+        "Country": "Norway",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 64.9,
+        "Point": "Point",
+        "Latitude (generated)": -1,
+        "Longitude (generated)": 5
+    },
+    {
+        "Year Int": 2022,
+        "Code": "NLD",
+        "Country": "Netherlands",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 65,
+        "Point": "Point",
+        "Latitude (generated)": -4,
+        "Longitude (generated)": 4
+    },
+    {
+        "Year Int": 2022,
+        "Code": "LVA",
+        "Country": "Latvia",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 61.7,
+        "Point": "Point",
+        "Latitude (generated)": -3,
+        "Longitude (generated)": 8
+    },
+    {
+        "Year Int": 2022,
+        "Code": "LUX",
+        "Country": "Luxembourg",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 60.5,
+        "Point": "Point",
+        "Latitude (generated)": -5,
+        "Longitude (generated)": 3
+    },
+    {
+        "Year Int": 2022,
+        "Code": "LTU",
+        "Country": "Lithuania",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 63.4,
+        "Point": "Point",
+        "Latitude (generated)": -3,
+        "Longitude (generated)": 7
+    },
+    {
+        "Year Int": 2022,
+        "Code": "ITA",
+        "Country": "Italy",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 63,
+        "Point": "Point",
+        "Latitude (generated)": -6,
+        "Longitude (generated)": 4
+    },
+    {
+        "Year Int": 2022,
+        "Code": "ISR",
+        "Country": "Israel",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 66.5,
+        "Point": "Point",
+        "Latitude (generated)": -9,
+        "Longitude (generated)": 9
+    },
+    {
+        "Year Int": 2022,
+        "Code": "ISL",
+        "Country": "Iceland",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 68.3,
+        "Point": "Point",
+        "Latitude (generated)": -1,
+        "Longitude (generated)": 1
+    },
+    {
+        "Year Int": 2022,
+        "Code": "IRL",
+        "Country": "Ireland",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 66.3,
+        "Point": "Point",
+        "Latitude (generated)": -3,
+        "Longitude (generated)": 1
+    },
+    {
+        "Year Int": 2022,
+        "Code": "HUN",
+        "Country": "Hungary",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 63.2,
+        "Point": "Point",
+        "Latitude (generated)": -6,
+        "Longitude (generated)": 6
+    },
+    {
+        "Year Int": 2022,
+        "Code": "GRC",
+        "Country": "Greece",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 63.2,
+        "Point": "Point",
+        "Latitude (generated)": -9,
+        "Longitude (generated)": 7
+    },
+    {
+        "Year Int": 2022,
+        "Code": "GBR",
+        "Country": "United Kingdom",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 63.2,
+        "Point": "Point",
+        "Latitude (generated)": -3,
+        "Longitude (generated)": 2
+    },
+    {
+        "Year Int": 2022,
+        "Code": "FRA",
+        "Country": "France",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 60.7,
+        "Point": "Point",
+        "Latitude (generated)": -5,
+        "Longitude (generated)": 2
+    },
+    {
+        "Year Int": 2022,
+        "Code": "FIN",
+        "Country": "Finland",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 63.7,
+        "Point": "Point",
+        "Latitude (generated)": -1,
+        "Longitude (generated)": 7
+    },
+    {
+        "Year Int": 2022,
+        "Code": "EST",
+        "Country": "Estonia",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 64.6,
+        "Point": "Point",
+        "Latitude (generated)": -2,
+        "Longitude (generated)": 7
+    },
+    {
+        "Year Int": 2022,
+        "Code": "ESP",
+        "Country": "Spain",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 62.1,
+        "Point": "Point",
+        "Latitude (generated)": -6,
+        "Longitude (generated)": 2
+    },
+    {
+        "Year Int": 2022,
+        "Code": "DNK",
+        "Country": "Denmark",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 64.5,
+        "Point": "Point",
+        "Latitude (generated)": -3,
+        "Longitude (generated)": 5
+    },
+    {
+        "Year Int": 2022,
+        "Code": "DEU",
+        "Country": "Germany",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 63.7,
+        "Point": "Point",
+        "Latitude (generated)": -4,
+        "Longitude (generated)": 5
+    },
+    {
+        "Year Int": 2022,
+        "Code": "CZE",
+        "Country": "Czechia",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 64,
+        "Point": "Point",
+        "Latitude (generated)": -5,
+        "Longitude (generated)": 5
+    },
+    {
+        "Year Int": 2022,
+        "Code": "CHE",
+        "Country": "Switzerland",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 64.6,
+        "Point": "Point",
+        "Latitude (generated)": -5,
+        "Longitude (generated)": 4
+    },
+    {
+        "Year Int": 2022,
+        "Code": "BEL",
+        "Country": "Belgium",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 61.1,
+        "Point": "Point",
+        "Latitude (generated)": -4,
+        "Longitude (generated)": 3
+    },
+    {
+        "Year Int": 2022,
+        "Code": "AUT",
+        "Country": "Austria",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 61.6,
+        "Point": "Point",
+        "Latitude (generated)": -6,
+        "Longitude (generated)": 5
+    },
+    {
+        "Year Int": 2022,
+        "Code": "TUR",
+        "Country": "Türkiye",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 60.2,
+        "Point": "Point",
+        "Latitude (generated)": -7,
+        "Longitude (generated)": 9
+    },
+    {
+        "Year Int": 2022,
+        "Code": "SWE",
+        "Country": "Sweden",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 64.5,
+        "Point": "Point",
+        "Latitude (generated)": -1,
+        "Longitude (generated)": 6
+    },
+    {
+        "Year Int": 2022,
+        "Code": "SVN",
+        "Country": "Slovenia",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 59.7,
+        "Point": "Point",
+        "Latitude (generated)": -7,
+        "Longitude (generated)": 4
+    },
+    {
+        "Year Int": 2022,
+        "Code": "SVK",
+        "Country": "Slovak Republic",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 61.7,
+        "Point": "Point",
+        "Latitude (generated)": -5,
+        "Longitude (generated)": 6
+    },
+    {
+        "Year Int": 2022,
+        "Code": "PRT",
+        "Country": "Portugal",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 64.6,
+        "Point": "Point",
+        "Latitude (generated)": -6,
+        "Longitude (generated)": 1
+    },
+    {
+        "Year Int": 2022,
+        "Code": "POL",
+        "Country": "Poland",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 61.2,
+        "Point": "Point",
+        "Latitude (generated)": -4,
+        "Longitude (generated)": 6
+    },
+    {
+        "Year Int": 2022,
+        "Code": "NOR",
+        "Country": "Norway",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 62.4,
+        "Point": "Point",
+        "Latitude (generated)": -1,
+        "Longitude (generated)": 5
+    },
+    {
+        "Year Int": 2022,
+        "Code": "NLD",
+        "Country": "Netherlands",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 63.9,
+        "Point": "Point",
+        "Latitude (generated)": -4,
+        "Longitude (generated)": 4
+    },
+    {
+        "Year Int": 2022,
+        "Code": "LVA",
+        "Country": "Latvia",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 63.2,
+        "Point": "Point",
+        "Latitude (generated)": -3,
+        "Longitude (generated)": 8
+    },
+    {
+        "Year Int": 2022,
+        "Code": "LUX",
+        "Country": "Luxembourg",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 58.4,
+        "Point": "Point",
+        "Latitude (generated)": -5,
+        "Longitude (generated)": 3
+    },
+    {
+        "Year Int": 2022,
+        "Code": "LTU",
+        "Country": "Lithuania",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 63.8,
+        "Point": "Point",
+        "Latitude (generated)": -3,
+        "Longitude (generated)": 7
+    },
+    {
+        "Year Int": 2022,
+        "Code": "ITA",
+        "Country": "Italy",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 62,
+        "Point": "Point",
+        "Latitude (generated)": -6,
+        "Longitude (generated)": 4
+    },
+    {
+        "Year Int": 2022,
+        "Code": "ISR",
+        "Country": "Israel",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 66,
+        "Point": "Point",
+        "Latitude (generated)": -9,
+        "Longitude (generated)": 9
+    },
+    {
+        "Year Int": 2022,
+        "Code": "ISL",
+        "Country": "Iceland",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 65.8,
+        "Point": "Point",
+        "Latitude (generated)": -1,
+        "Longitude (generated)": 1
+    },
+    {
+        "Year Int": 2022,
+        "Code": "IRL",
+        "Country": "Ireland",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 64.9,
+        "Point": "Point",
+        "Latitude (generated)": -3,
+        "Longitude (generated)": 1
+    },
+    {
+        "Year Int": 2022,
+        "Code": "HUN",
+        "Country": "Hungary",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 60.8,
+        "Point": "Point",
+        "Latitude (generated)": -6,
+        "Longitude (generated)": 6
+    },
+    {
+        "Year Int": 2022,
+        "Code": "GRC",
+        "Country": "Greece",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 59.7,
+        "Point": "Point",
+        "Latitude (generated)": -9,
+        "Longitude (generated)": 7
+    },
+    {
+        "Year Int": 2022,
+        "Code": "GBR",
+        "Country": "United Kingdom",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 62.8,
+        "Point": "Point",
+        "Latitude (generated)": -3,
+        "Longitude (generated)": 2
+    },
+    {
+        "Year Int": 2022,
+        "Code": "FRA",
+        "Country": "France",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 62.2,
+        "Point": "Point",
+        "Latitude (generated)": -5,
+        "Longitude (generated)": 2
+    },
+    {
+        "Year Int": 2022,
+        "Code": "FIN",
+        "Country": "Finland",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 63.8,
+        "Point": "Point",
+        "Latitude (generated)": -1,
+        "Longitude (generated)": 7
+    },
+    {
+        "Year Int": 2022,
+        "Code": "EST",
+        "Country": "Estonia",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 65.1,
+        "Point": "Point",
+        "Latitude (generated)": -2,
+        "Longitude (generated)": 7
+    },
+    {
+        "Year Int": 2022,
+        "Code": "ESP",
+        "Country": "Spain",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 61.8,
+        "Point": "Point",
+        "Latitude (generated)": -6,
+        "Longitude (generated)": 2
+    },
+    {
+        "Year Int": 2022,
+        "Code": "DNK",
+        "Country": "Denmark",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 63.8,
+        "Point": "Point",
+        "Latitude (generated)": -3,
+        "Longitude (generated)": 5
+    },
+    {
+        "Year Int": 2022,
+        "Code": "DEU",
+        "Country": "Germany",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 63.4,
+        "Point": "Point",
+        "Latitude (generated)": -4,
+        "Longitude (generated)": 5
+    },
+    {
+        "Year Int": 2022,
+        "Code": "CZE",
+        "Country": "Czechia",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 62.2,
+        "Point": "Point",
+        "Latitude (generated)": -5,
+        "Longitude (generated)": 5
+    },
+    {
+        "Year Int": 2022,
+        "Code": "CHE",
+        "Country": "Switzerland",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 64,
+        "Point": "Point",
+        "Latitude (generated)": -5,
+        "Longitude (generated)": 4
+    },
+    {
+        "Year Int": 2022,
+        "Code": "BEL",
+        "Country": "Belgium",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 61.3,
+        "Point": "Point",
+        "Latitude (generated)": -4,
+        "Longitude (generated)": 3
+    },
+    {
+        "Year Int": 2022,
+        "Code": "AUT",
+        "Country": "Austria",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 60.9,
+        "Point": "Point",
+        "Latitude (generated)": -6,
+        "Longitude (generated)": 5
+    },
+    {
+        "Year Int": 1972,
+        "Code": "TUR",
+        "Country": "Türkiye",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 66.1,
+        "Point": "Point",
+        "Latitude (generated)": -7,
+        "Longitude (generated)": 9
+    },
+    {
+        "Year Int": 1972,
+        "Code": "SWE",
+        "Country": "Sweden",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 65.4,
+        "Point": "Point",
+        "Latitude (generated)": -1,
+        "Longitude (generated)": 6
+    },
+    {
+        "Year Int": 1972,
+        "Code": "SVN",
+        "Country": "Slovenia",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 62.8,
+        "Point": "Point",
+        "Latitude (generated)": -7,
+        "Longitude (generated)": 4
+    },
+    {
+        "Year Int": 1972,
+        "Code": "SVK",
+        "Country": "Slovak Republic",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 62.4,
+        "Point": "Point",
+        "Latitude (generated)": -5,
+        "Longitude (generated)": 6
+    },
+    {
+        "Year Int": 1972,
+        "Code": "PRT",
+        "Country": "Portugal",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 69.3,
+        "Point": "Point",
+        "Latitude (generated)": -6,
+        "Longitude (generated)": 1
+    },
+    {
+        "Year Int": 1972,
+        "Code": "POL",
+        "Country": "Poland",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 68.2,
+        "Point": "Point",
+        "Latitude (generated)": -4,
+        "Longitude (generated)": 6
+    },
+    {
+        "Year Int": 1972,
+        "Code": "NOR",
+        "Country": "Norway",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 66.3,
+        "Point": "Point",
+        "Latitude (generated)": -1,
+        "Longitude (generated)": 5
+    },
+    {
+        "Year Int": 1972,
+        "Code": "NLD",
+        "Country": "Netherlands",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 64.3,
+        "Point": "Point",
+        "Latitude (generated)": -4,
+        "Longitude (generated)": 4
+    },
+    {
+        "Year Int": 1972,
+        "Code": "LUX",
+        "Country": "Luxembourg",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 62.1,
+        "Point": "Point",
+        "Latitude (generated)": -5,
+        "Longitude (generated)": 3
+    },
+    {
+        "Year Int": 1972,
+        "Code": "ITA",
+        "Country": "Italy",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 62.6,
+        "Point": "Point",
+        "Latitude (generated)": -6,
+        "Longitude (generated)": 4
+    },
+    {
+        "Year Int": 1972,
+        "Code": "ISL",
+        "Country": "Iceland",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 69.1,
+        "Point": "Point",
+        "Latitude (generated)": -1,
+        "Longitude (generated)": 1
+    },
+    {
+        "Year Int": 1972,
+        "Code": "IRL",
+        "Country": "Ireland",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 69.3,
+        "Point": "Point",
+        "Latitude (generated)": -3,
+        "Longitude (generated)": 1
+    },
+    {
+        "Year Int": 1972,
+        "Code": "HUN",
+        "Country": "Hungary",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 65.2,
+        "Point": "Point",
+        "Latitude (generated)": -6,
+        "Longitude (generated)": 6
+    },
+    {
+        "Year Int": 1972,
+        "Code": "GRC",
+        "Country": "Greece",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 64.5,
+        "Point": "Point",
+        "Latitude (generated)": -9,
+        "Longitude (generated)": 7
+    },
+    {
+        "Year Int": 1972,
+        "Code": "GBR",
+        "Country": "United Kingdom",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 66.5,
+        "Point": "Point",
+        "Latitude (generated)": -3,
+        "Longitude (generated)": 2
+    },
+    {
+        "Year Int": 1972,
+        "Code": "FRA",
+        "Country": "France",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 64.9,
+        "Point": "Point",
+        "Latitude (generated)": -5,
+        "Longitude (generated)": 2
+    },
+    {
+        "Year Int": 1972,
+        "Code": "FIN",
+        "Country": "Finland",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 63.2,
+        "Point": "Point",
+        "Latitude (generated)": -1,
+        "Longitude (generated)": 7
+    },
+    {
+        "Year Int": 1972,
+        "Code": "EST",
+        "Country": "Estonia",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 65.3,
+        "Point": "Point",
+        "Latitude (generated)": -2,
+        "Longitude (generated)": 7
+    },
+    {
+        "Year Int": 1972,
+        "Code": "ESP",
+        "Country": "Spain",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 66.5,
+        "Point": "Point",
+        "Latitude (generated)": -6,
+        "Longitude (generated)": 2
+    },
+    {
+        "Year Int": 1972,
+        "Code": "DNK",
+        "Country": "Denmark",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 65.7,
+        "Point": "Point",
+        "Latitude (generated)": -3,
+        "Longitude (generated)": 5
+    },
+    {
+        "Year Int": 1972,
+        "Code": "CZE",
+        "Country": "Czechia",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 62.1,
+        "Point": "Point",
+        "Latitude (generated)": -5,
+        "Longitude (generated)": 5
+    },
+    {
+        "Year Int": 1972,
+        "Code": "CHE",
+        "Country": "Switzerland",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 68.9,
+        "Point": "Point",
+        "Latitude (generated)": -5,
+        "Longitude (generated)": 4
+    },
+    {
+        "Year Int": 1972,
+        "Code": "BEL",
+        "Country": "Belgium",
+        "UPPER(Gender)": "MALE",
+        "Avg. Effective labour market exit age": 62.9,
+        "Point": "Point",
+        "Latitude (generated)": -4,
+        "Longitude (generated)": 3
+    },
+    {
+        "Year Int": 1972,
+        "Code": "TUR",
+        "Country": "Türkiye",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 56.6,
+        "Point": "Point",
+        "Latitude (generated)": -7,
+        "Longitude (generated)": 9
+    },
+    {
+        "Year Int": 1972,
+        "Code": "SWE",
+        "Country": "Sweden",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 64.3,
+        "Point": "Point",
+        "Latitude (generated)": -1,
+        "Longitude (generated)": 6
+    },
+    {
+        "Year Int": 1972,
+        "Code": "SVN",
+        "Country": "Slovenia",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 61.7,
+        "Point": "Point",
+        "Latitude (generated)": -7,
+        "Longitude (generated)": 4
+    },
+    {
+        "Year Int": 1972,
+        "Code": "SVK",
+        "Country": "Slovak Republic",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 59.2,
+        "Point": "Point",
+        "Latitude (generated)": -5,
+        "Longitude (generated)": 6
+    },
+    {
+        "Year Int": 1972,
+        "Code": "PRT",
+        "Country": "Portugal",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 67.7,
+        "Point": "Point",
+        "Latitude (generated)": -6,
+        "Longitude (generated)": 1
+    },
+    {
+        "Year Int": 1972,
+        "Code": "POL",
+        "Country": "Poland",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 66.6,
+        "Point": "Point",
+        "Latitude (generated)": -4,
+        "Longitude (generated)": 6
+    },
+    {
+        "Year Int": 1972,
+        "Code": "NOR",
+        "Country": "Norway",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 67.8,
+        "Point": "Point",
+        "Latitude (generated)": -1,
+        "Longitude (generated)": 5
+    },
+    {
+        "Year Int": 1972,
+        "Code": "NLD",
+        "Country": "Netherlands",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 64.9,
+        "Point": "Point",
+        "Latitude (generated)": -4,
+        "Longitude (generated)": 4
+    },
+    {
+        "Year Int": 1972,
+        "Code": "LUX",
+        "Country": "Luxembourg",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 61.6,
+        "Point": "Point",
+        "Latitude (generated)": -5,
+        "Longitude (generated)": 3
+    },
+    {
+        "Year Int": 1972,
+        "Code": "ITA",
+        "Country": "Italy",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 59.6,
+        "Point": "Point",
+        "Latitude (generated)": -6,
+        "Longitude (generated)": 4
+    },
+    {
+        "Year Int": 1972,
+        "Code": "ISL",
+        "Country": "Iceland",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 69.4,
+        "Point": "Point",
+        "Latitude (generated)": -1,
+        "Longitude (generated)": 1
+    },
+    {
+        "Year Int": 1972,
+        "Code": "IRL",
+        "Country": "Ireland",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 71.6,
+        "Point": "Point",
+        "Latitude (generated)": -3,
+        "Longitude (generated)": 1
+    },
+    {
+        "Year Int": 1972,
+        "Code": "HUN",
+        "Country": "Hungary",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 63.8,
+        "Point": "Point",
+        "Latitude (generated)": -6,
+        "Longitude (generated)": 6
+    },
+    {
+        "Year Int": 1972,
+        "Code": "GRC",
+        "Country": "Greece",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 61.7,
+        "Point": "Point",
+        "Latitude (generated)": -9,
+        "Longitude (generated)": 7
+    },
+    {
+        "Year Int": 1972,
+        "Code": "GBR",
+        "Country": "United Kingdom",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 64,
+        "Point": "Point",
+        "Latitude (generated)": -3,
+        "Longitude (generated)": 2
+    },
+    {
+        "Year Int": 1972,
+        "Code": "FRA",
+        "Country": "France",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 65.1,
+        "Point": "Point",
+        "Latitude (generated)": -5,
+        "Longitude (generated)": 2
+    },
+    {
+        "Year Int": 1972,
+        "Code": "FIN",
+        "Country": "Finland",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 60.4,
+        "Point": "Point",
+        "Latitude (generated)": -1,
+        "Longitude (generated)": 7
+    },
+    {
+        "Year Int": 1972,
+        "Code": "EST",
+        "Country": "Estonia",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 60.9,
+        "Point": "Point",
+        "Latitude (generated)": -2,
+        "Longitude (generated)": 7
+    },
+    {
+        "Year Int": 1972,
+        "Code": "ESP",
+        "Country": "Spain",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 71.2,
+        "Point": "Point",
+        "Latitude (generated)": -6,
+        "Longitude (generated)": 2
+    },
+    {
+        "Year Int": 1972,
+        "Code": "DNK",
+        "Country": "Denmark",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 64.2,
+        "Point": "Point",
+        "Latitude (generated)": -3,
+        "Longitude (generated)": 5
+    },
+    {
+        "Year Int": 1972,
+        "Code": "CZE",
+        "Country": "Czechia",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 59.6,
+        "Point": "Point",
+        "Latitude (generated)": -5,
+        "Longitude (generated)": 5
+    },
+    {
+        "Year Int": 1972,
+        "Code": "CHE",
+        "Country": "Switzerland",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 68.1,
+        "Point": "Point",
+        "Latitude (generated)": -5,
+        "Longitude (generated)": 4
+    },
+    {
+        "Year Int": 1972,
+        "Code": "BEL",
+        "Country": "Belgium",
+        "UPPER(Gender)": "FEMALE",
+        "Avg. Effective labour market exit age": 61.2,
+        "Point": "Point",
+        "Latitude (generated)": -4,
+        "Longitude (generated)": 3
+    }
+]
