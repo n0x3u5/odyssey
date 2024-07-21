@@ -30,4 +30,19 @@ type Canvas = {
   };
 };
 
-export type { Canvas };
+type DataModel = {
+  getField: <T>(fieldName: string) => { data: () => Array<T>; minMax: () => [number, number] };
+  select: (criteria: { field: string; value: unknown; operator: 'eq' }) => DataModel;
+  sort: (fields: Array<[string, 'asc' | 'desc']>) => DataModel;
+  calculateVariable: (
+    {
+      name,
+      type,
+      defAggFn
+    }: { name: string; type: 'measure' | 'dimension'; defAggFn?: 'sum' | 'avg' },
+    fields: Array<string>,
+    fn: (...args: Array<unknown>) => unknown
+  ) => DataModel;
+};
+
+export type { Canvas, DataModel };

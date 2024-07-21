@@ -1,82 +1,9 @@
 <script lang="ts">
-	const pageInfos = [
-		{
-			name: 'bar',
-			alt: 'Bar Chart'
-		},
-		{
-			name: 'dumbell',
-			alt: 'Dumbell'
-		},
-		{
-			name: 'dotplot',
-			alt: 'Dot Plot'
-		},
-		{
-			name: 'highlightdotplot',
-			alt: 'Dot Plot with Highlight'
-		},
-		{
-			name: 'boxplot',
-			alt: 'Box Plot'
-		},
-		{
-			name: 'slopeplot',
-			alt: 'Slope Plot'
-		},
-		{
-			name: 'heatmap',
-			alt: 'Heatmap'
-		},
-		{
-			name: 'arrowplot',
-			alt: 'Arrow Plot'
-		},
-		{
-			name: 'slopestrip',
-			alt: 'Slope and Strip Hybrid'
-		},
-		{
-			name: 'smallmultiples',
-			alt: 'Small Multiples'
-		},
-		{
-			name: 'highlightsmallmultiples',
-			alt: 'Small Multiples with Highlight'
-		},
-		{
-			name: 'scatter',
-			alt: 'Scatter'
-		},
-		{
-			name: 'divergingbar',
-			alt: 'Diverging Bar Chart'
-		},
-		{
-			name: 'bivariatearea',
-			alt: 'Bivariate Area Chart'
-		},
-		{
-			name: 'area',
-			alt: 'Area Chart'
-		},
-		{
-			name: 'winloss',
-			alt: 'Win-Loss Chart'
-		},
-		{
-			name: 'stripplot',
-			alt: 'Strip Plot'
-		},
-		{
-			name: 'lollipop',
-			alt: 'Lollipop Plot'
-		},
-		{
-			name: 'tilemap',
-			alt: 'Tile Map'
-		}
-	];
+	import type { PageData } from './$types';
+
+	const { data }: { data: PageData } = $props();
+	const pageInfos = $derived(data.pageInfos);
+	const nextPage = $derived(data.nextPageInfo);
 </script>
 
 <main class="min-h-screen p-4">
@@ -131,7 +58,7 @@
 			<aside>
 				<p class="text-right">
 					<span class="inline-block transition-transform hover:translate-x-1">
-						<a href="/bar">
+						<a href={`/viz/${nextPage.name}`}>
 							Go to the first chart
 							<svg class="inline size-4 rotate-180 align-text-bottom">
 								<use href="#icon-chevron-double-left" />
@@ -140,20 +67,17 @@
 					</span>
 				</p>
 			</aside>
-			<ul>
+			<div class="flex flex-wrap gap-4">
 				{#each pageInfos as { name, alt }}
-					<li>
-						<a href={`/${name}`}>
-							<!-- <img
+					<a href={`/viz/${name}`}>
+						<img
 							{alt}
-							class="size-28 rounded border-2 border-gray-200 transition-opacity hover:opacity-80 hover:brightness-105"
+							class="m-0 size-28 rounded border-2 border-gray-200 transition-opacity hover:opacity-80 hover:brightness-105"
 							src={`/images/${name}.jpeg`}
-						/> -->
-							{alt}
-						</a>
-					</li>
+						/>
+					</a>
 				{/each}
-			</ul>
+			</div>
 		</nav>
 		<hr />
 	</section>
