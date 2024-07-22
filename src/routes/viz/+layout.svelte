@@ -23,7 +23,7 @@
 					{#if prevPage.name === ''}
 						<svg class="hidden size-5 align-middle md:inline"><use href="#icon-home" /></svg>
 						<span
-							class="absolute -bottom-1 left-3/4 hidden h-[0.5px] w-4 -translate-x-1/2 bg-black duration-200 group-hover:w-6 md:block"
+							class="absolute -bottom-1 left-3/4 hidden h-[0.5px] w-4 -translate-x-1/2 bg-black duration-200 md:block"
 						></span>
 					{:else}
 						<span class="hidden align-middle underline md:inline">{prevPage.alt}</span>
@@ -33,7 +33,7 @@
 			<span class="flex items-center whitespace-nowrap">
 				<span class="group relative -mr-2 inline-flex size-8 items-center justify-center">
 					<a
-						class="inline-flex size-6 items-center justify-center text-gray-600 hover:text-gray-800"
+						class="inline-flex size-6 items-center justify-center text-gray-400 hover:text-gray-800"
 						href="/"
 					>
 						<svg class="size-6"><use href="#icon-home" /></svg>
