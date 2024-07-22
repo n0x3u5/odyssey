@@ -222,10 +222,10 @@
 	});
 </script>
 
-<div class="grow-[427] md:grow-[467]" bind:this={femaleViz}></div>
-<div class="male grow-[573] md:grow-[533]" bind:this={maleViz}></div>
+<div class="not-prose grow-[427] md:grow-[467]" bind:this={femaleViz}></div>
+<div class="not-prose male grow-[573] md:grow-[533]" bind:this={maleViz}></div>
 
-<style lang="postcss">
+<style>
 	div.male :global(div.muze-axis-cell-left g.muze-discrete-axis) {
 		text-anchor: middle;
 		transform: translate(22px, 0);

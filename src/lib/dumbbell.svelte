@@ -269,7 +269,7 @@
 			<span class="text-xs font-medium text-gray-700">Male</span>
 		</div>
 	</div>
-	<div class="dumbbell -mt-6 grow" bind:this={viz}></div>
+	<div class="not-prose dumbbell grow" bind:this={viz}></div>
 </div>
 
 <style>

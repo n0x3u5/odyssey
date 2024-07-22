@@ -23,7 +23,7 @@
 			<h2>MALE</h2>
 		</div>
 	</header>
-	<main class="not-prose flex w-full grow">
+	<main class="flex w-full grow">
 		{#await import('@viz/muze') then { default: muze }}
 			<Bar {muze} {schema} {data}></Bar>
 		{/await}
