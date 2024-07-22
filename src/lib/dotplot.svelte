@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
-	import type { DataModel as TDataModel } from './types';
+	import type { Canvas, DataModel as TDataModel } from './types';
 
 	type Muze = typeof import('@viz/muze').default;
 
@@ -39,9 +39,19 @@
 	let femaleViz: HTMLDivElement | null = $state(null);
 	let maleViz: HTMLDivElement | null = $state(null);
 
-	$effect(() => {
-		femaleCanvas
-			.data(femaleDM)
+	const updateCanvas = ({
+		canvas,
+		dataModel,
+		colorName,
+		colorHex
+	}: {
+		canvas: Canvas;
+		dataModel: TDataModel;
+		colorName: string;
+		colorHex: `#${string}`;
+	}) =>
+		canvas
+			.data(dataModel)
 			.detail(['Country'])
 			.rows([['avg(Row (decade year) 2)', 'count(DISTINCT Country)'], ['twelve']])
 			.columns([
@@ -57,7 +67,7 @@
 					encoding: {
 						x: 'Effective labour market exit age (bins)',
 						y: 'count(DISTINCT Country)',
-						color: { value: () => '#6366f1' }
+						color: { value: () => colorHex }
 					}
 				},
 				{
@@ -79,7 +89,6 @@
 					x: {
 						domain: [54, 80],
 						name: 'AGE OF LABOUR MARKET EXIT →',
-						showInnerTicks: true,
 						tickFormat: ({
 							formattedValue,
 							rawValue
@@ -111,11 +120,19 @@
 								.data()
 								.at(0);
 							return html`<div><span class="font-bold">${country}</span>, ${year}</div>
-								<div><span class="font-bold text-indigo-500">${exitAge}</span> years</div>`;
+								<div><span class="${colorName} font-bold">${exitAge}</span> years</div>`;
 						}
 					}
 				}
 			});
+
+	$effect(() => {
+		updateCanvas({
+			canvas: femaleCanvas,
+			dataModel: femaleDM,
+			colorName: 'text-indigo-500',
+			colorHex: '#6366f1'
+		});
 	});
 
 	const onAnimationEnd = () => {
@@ -145,81 +162,12 @@
 	});
 
 	$effect(() => {
-		maleCanvas
-			.data(maleDM)
-			.detail(['Country'])
-			.rows([['avg(Row (decade year) 2)', 'count(DISTINCT Country)'], ['twelve']])
-			.columns([
-				[
-					'avg(Column (decade year) 2)',
-					{ field: 'Effective labour market exit age (bins)', as: 'continuous' }
-				],
-				['fiftySeven']
-			])
-			.layers([
-				{
-					mark: 'bar',
-					encoding: {
-						x: 'Effective labour market exit age (bins)',
-						y: 'count(DISTINCT Country)',
-						color: { value: () => '#eab308' }
-					}
-				},
-				{
-					mark: 'point',
-					encoding: {
-						x: 'fiftySeven',
-						y: 'twelve',
-						text: 'avg(Year Int)',
-						size: { value: () => 0 }
-					}
-				}
-			])
-			.config({
-				autoGroupBy: { disabled: true },
-				rows: { facets: { show: false } },
-				columns: { facets: { show: false }, headers: { show: false } },
-				axes: {
-					y: { show: false, domain: [0, 15] },
-					x: {
-						domain: [54, 80],
-						name: 'AGE OF LABOUR MARKET EXIT →',
-						tickFormat: ({
-							formattedValue,
-							rawValue
-						}: {
-							formattedValue: string;
-							rawValue: [number, number] | number;
-						}) => {
-							if (Array.isArray(rawValue)) {
-								return rawValue[0] % 5 === 0 ? formattedValue : '';
-							} else {
-								return formattedValue;
-							}
-						}
-					}
-				},
-				legend: {
-					show: false
-				},
-				gridLines: {
-					show: false
-				},
-				interaction: {
-					tooltip: {
-						formatter: ({ dataModel }: { dataModel: TDataModel }) => {
-							const country = dataModel.getField<string>('Country').data().at(0);
-							const year = dataModel.getField('avg(Year Int)').data().at(0);
-							const exitAge = dataModel
-								.getField('Effective labour market exit age (bins)')
-								.data()
-								.at(0);
-							return html`<div><span class="font-bold">${country}</span>, ${year}</div>
-								<div><span class="font-bold text-yellow-500">${exitAge}</span> years</div>`;
-						}
-					}
-				}
-			});
+		updateCanvas({
+			canvas: maleCanvas,
+			dataModel: maleDM,
+			colorName: 'text-yellow-500',
+			colorHex: '#eab308'
+		});
 	});
 
 	$effect(() => {
