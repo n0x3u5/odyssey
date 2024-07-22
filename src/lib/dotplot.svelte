@@ -16,13 +16,16 @@
 	const DataModel = $derived(muze.DataModel);
 	const loadedData = $derived(DataModel.loadDataSync(data, schema));
 	const dm = $derived(
-		new DataModel(loadedData).select({
-			operator: 'and',
-			conditions: [
-				{ field: 'Decades only : T|F', value: 'True', operator: 'eq' },
-				{ field: 'Country: OECD Avg ', value: 'OECD average', operator: 'neq' }
-			]
-		})
+		new DataModel(loadedData)
+			.select({
+				operator: 'and',
+				conditions: [
+					{ field: 'Decades only : T|F', value: 'True', operator: 'eq' },
+					{ field: 'Country: OECD Avg ', value: 'OECD average', operator: 'neq' }
+				]
+			})
+			.calculateVariable({ name: 'fiftySeven', type: 'measure', defAggFn: 'avg' }, [], () => 57)
+			.calculateVariable({ name: 'twelve', type: 'measure', defAggFn: 'avg' }, [], () => 12)
 	);
 	const env = $derived(muze());
 	const canvas = $derived(env.canvas());
@@ -33,18 +36,30 @@
 		canvas
 			.data(dm)
 			.detail(['Country'])
-			.rows([
-				'Gender',
-				{ field: 'avg(Row (decade year) 2)', as: 'discrete' },
-				'count(DISTINCT Country)'
-			])
+			.rows([['Gender', 'avg(Row (decade year) 2)', 'count(DISTINCT Country)'], ['twelve']])
 			.columns([
-				{ field: 'avg(Column (decade year) 2)', as: 'discrete' },
-				{ field: 'Effective labour market exit age (bins)', as: 'continuous' }
+				[
+					'avg(Column (decade year) 2)',
+					{ field: 'Effective labour market exit age (bins)', as: 'continuous' }
+				],
+				['fiftySeven']
 			])
 			.layers([
 				{
-					mark: 'bar'
+					mark: 'bar',
+					encoding: {
+						x: 'Effective labour market exit age (bins)',
+						y: 'count(DISTINCT Country)'
+					}
+				},
+				{
+					mark: 'point',
+					encoding: {
+						x: 'fiftySeven',
+						y: 'twelve',
+						text: 'avg(Year Int)',
+						size: { value: () => 0 }
+					}
 				}
 			])
 			.color('Gender')
@@ -52,7 +67,10 @@
 				autoGroupBy: { disabled: true },
 				rows: { facets: { show: false } },
 				columns: { facets: { show: false }, headers: { show: false } },
-				axes: { y: { show: false } },
+				axes: {
+					y: { show: false, domain: [0, 13] },
+					x: { domain: [54, 80] }
+				},
 				legend: {
 					show: false
 				}
@@ -63,7 +81,7 @@
 		[...document.querySelectorAll('g.muze-layer-bars rect')].map((rect) => {
 			const height = rect.getAttribute('height');
 			if (height != null) {
-				rect.setAttribute('height', `${Math.floor(+height)}`);
+				rect.setAttribute('height', `${Math.floor(+height) - 1}`);
 			}
 		});
 	};
@@ -87,3 +105,18 @@
 </script>
 
 <div class="dotplot size-full" bind:this={viz}></div>
+
+<style>
+	div.dotplot :global(g.muze-layer-overlay-path-group path) {
+		stroke-width: 2px !important;
+	}
+
+	div.dotplot :global(g.muze-layer-point) {
+		fill-opacity: 0 !important;
+	}
+
+	div.dotplot :global(g.muze-layer-point-labels text) {
+		font-weight: bold !important;
+		font-size: 1rem !important;
+	}
+</style>
