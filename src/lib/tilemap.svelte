@@ -22,7 +22,6 @@
 	let viz: HTMLDivElement | null = $state(null);
 
 	$effect(() => {
-		window.canvas = canvas;
 		canvas
 			.data(dm)
 			.rows(['UPPER(Gender)', 'Latitude (generated)'])
