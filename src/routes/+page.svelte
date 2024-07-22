@@ -1,11 +1,12 @@
 <script lang="ts">
+	import type { Picture } from 'vite-imagetools';
 	import type { PageData } from './$types';
 
 	const { data }: { data: PageData } = $props();
 	const pageInfos = $derived(data.pageInfos);
 	const nextPage = $derived(data.nextPageInfo);
 
-	const imageModules = import.meta.glob('/static/images/*.png', {
+	const imageModules = import.meta.glob<Record<string, Picture>>('/static/images/*.png', {
 		eager: true,
 		query: {
 			enhanced: true,
@@ -110,9 +111,3 @@
 		</div>
 	</footer>
 </main>
-
-<style>
-	picture {
-		margin: 0;
-	}
-</style>
