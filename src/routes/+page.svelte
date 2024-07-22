@@ -111,3 +111,12 @@
 		</div>
 	</footer>
 </main>
+
+<!-- <picture> is not directly used in this page but is inserted by svelte enhanced image -->
+<!-- and has a margin applied by tailwind prose. This undoes that margin. -->
+<!-- svelte-ignore css_unused_selector -->
+<style>
+	picture {
+		margin: 0;
+	}
+</style>
