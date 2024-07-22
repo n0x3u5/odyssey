@@ -1,22 +1,8 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
-	import type { Canvas } from './types';
+	import type { Canvas, DataModel as TDataModel } from './types';
 
 	type Muze = typeof import('@viz/muze').default;
-	type DataModel = {
-		getField: (fieldName: string) => { data: () => Array<number>; minMax: () => [number, number] };
-		select: (criteria: { field: string; value: unknown; operator: 'eq' }) => DataModel;
-		sort: (fields: Array<[string, 'asc' | 'desc']>) => DataModel;
-		calculateVariable: (
-			{
-				name,
-				type,
-				defAggFn
-			}: { name: string; type: 'measure' | 'dimension'; defAggFn?: 'sum' | 'avg' },
-			fields: Array<string>,
-			fn: (...args: Array<unknown>) => unknown
-		) => DataModel;
-	};
 
 	let {
 		muze,
@@ -52,8 +38,8 @@
 			.groupBy(['Gender'])
 			.select({ field: 'Gender', value: 'Female', operator: 'eq' }, { mode: 'all' })
 			.map(
-				(dm: DataModel) =>
-					+(dm.getField('Effective labour market exit age').data().at(0)?.toFixed(2) ?? 0)
+				(dm: TDataModel) =>
+					+(dm.getField<number>('Effective labour market exit age').data().at(0)?.toFixed(2) ?? 0)
 			)
 	);
 
@@ -78,12 +64,12 @@
 	const femaleCanvas = $derived(env.canvas());
 	const maleCanvas = $derived(env.canvas());
 
-	const updateCanvas = ({ canvas, dm }: { canvas: Canvas; dm: DataModel }) => {
-		const [min, max] = dm.getField('{Exit age diff from average}').minMax();
+	const updateCanvas = ({ canvas, dm }: { canvas: Canvas; dm: TDataModel }) => {
+		const [min, max] = dm.getField<number>('{Exit age diff from average}').minMax();
 		const minDM = dm.select({ field: '{Exit age diff from average}', value: min, operator: 'eq' });
 		const maxDM = dm.select({ field: '{Exit age diff from average}', value: max, operator: 'eq' });
-		const maxCountry = maxDM.getField('Country').data().at(0);
-		const minCountry = minDM.getField('Country').data().at(0);
+		const maxCountry = maxDM.getField<string>('Country').data().at(0);
+		const minCountry = minDM.getField<string>('Country').data().at(0);
 		return canvas
 			.data(dm)
 			.rows(['Country'])
