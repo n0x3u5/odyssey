@@ -8,8 +8,10 @@
 	const data = $derived(pageData.data);
 </script>
 
-<main class="prose m-auto size-full max-w-4xl">
-	{#await import('@viz/muze') then { default: muze }}
-		<Dotplot {muze} {schema} {data}></Dotplot>
-	{/await}
-</main>
+<div class="prose m-auto size-full max-w-4xl">
+	<main class="size-full">
+		{#await import('@viz/muze') then { default: muze }}
+			<Dotplot {muze} {schema} {data}></Dotplot>
+		{/await}
+	</main>
+</div>

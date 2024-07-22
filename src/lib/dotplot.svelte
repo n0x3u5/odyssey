@@ -104,7 +104,7 @@
 	});
 </script>
 
-<div class="dotplot size-full" bind:this={viz}></div>
+<div class="not-prose dotplot size-full" bind:this={viz}></div>
 
 <style>
 	div.dotplot :global(g.muze-layer-overlay-path-group path) {
