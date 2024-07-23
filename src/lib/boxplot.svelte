@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
-	import { median as d3Median } from 'd3-array';
+	import { median as d3Median, zip as d3Zip } from 'd3-array';
+	import { computePosition, autoPlacement, shift, offset } from '@floating-ui/dom';
 	import type { Canvas } from './types';
 
 	const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -111,21 +112,35 @@
 						const yAxis = layer.axes().y;
 						const yScale = yAxis.scale();
 						const pointGroups = layer._points;
-						const yPxes = pointGroups.map((points) =>
-							yScale(d3Median(points, ({ data }) => data['Effective labour market exit age']))
+						const medians = pointGroups.map(
+							(points) =>
+								d3Median(points, ({ data }) => data['Effective labour market exit age']) ?? 0
 						);
+						const yPxes = medians.map((median) => yScale(median));
 						const medianGroup = document.createElementNS(SVG_NS, 'g');
-						yPxes.forEach((yPx) => {
+						medianGroup.classList.add('median-group');
+						d3Zip(yPxes, medians).forEach(([yPx, median]) => {
 							const medianLine = document.createElementNS(SVG_NS, 'line');
+							const medianLineTracker = document.createElementNS(SVG_NS, 'line');
 							medianLine.setAttribute('x1', rootSVGLeft.toString());
+							medianLineTracker.setAttribute('x1', rootSVGLeft.toString());
 							medianLine.setAttribute('x2', (rootSVGLeft + rootSVGWidth).toString());
+							medianLineTracker.setAttribute('x2', (rootSVGLeft + rootSVGWidth).toString());
 							medianLine.setAttribute('y1', yPx.toString());
+							medianLineTracker.setAttribute('y1', yPx.toString());
 							medianLine.setAttribute('y2', yPx.toString());
+							medianLineTracker.setAttribute('y2', yPx.toString());
 							medianLine.setAttribute('stroke', 'black');
-							medianLine.setAttribute('stroke-width', '1');
+							medianLineTracker.setAttribute('stroke', 'transparent');
+							medianLine.setAttribute('stroke-width', '1px');
+							medianLineTracker.setAttribute('stroke-width', '4px');
+							medianLine.setAttribute('data-median', `${median}`);
+							medianLineTracker.setAttribute('data-median', `${median}`);
 							medianLine.setAttribute('shape-rendering', 'crispEdges');
 							medianLine.classList.add('median-line');
+							medianLineTracker.classList.add('median-line-tracker');
 							medianGroup.appendChild(medianLine);
+							medianGroup.appendChild(medianLineTracker);
 						});
 						rootSVG.appendChild(medianGroup);
 					});
@@ -135,6 +150,68 @@
 
 	$effect(() => {
 		canvas.on('afterRendered', onRenderComplete);
+		canvas.on('afterRendered', ({ emitter: canvas }: { emitter: Canvas }) => {
+			const rootEl = canvas.mount();
+			const tooltip = document.createElement('div');
+
+			tooltip.classList.add(
+				'bg-white',
+				'text-neutral-600',
+				'shadow-md',
+				'p-2',
+				'text-xs',
+				`font-['Source_Sans_Pro']`,
+				'absolute',
+				'top-0',
+				'left-0',
+				'w-max',
+				'border',
+				'border-neutral-200',
+				'hidden'
+			);
+
+			rootEl.appendChild(tooltip);
+
+			const onMouseOver = (e: MouseEvent) => {
+				const target = e.target as SVGElement;
+				if (target.classList.contains('median-line-tracker')) {
+					const medianValue = (+(target.getAttribute('data-median') ?? 0)).toFixed(1);
+					computePosition(target, tooltip, {
+						middleware: [autoPlacement(), shift({ padding: 8 }), offset(8)]
+					}).then(({ x, y }) => {
+						Object.assign(tooltip.style, {
+							left: `${x}px`,
+							top: `${y}px`
+						});
+					});
+					tooltip.appendChild(document.createTextNode(`Median age: ${medianValue} years`));
+					document
+						.querySelectorAll('line.median-line')
+						.forEach((line) => line.setAttribute('opacity', '0.4'));
+					tooltip.classList.remove('hidden');
+					tooltip.classList.add('block');
+				} else {
+					tooltip.classList.remove('block');
+					tooltip.classList.add('hidden');
+					document
+						.querySelectorAll('line.median-line')
+						.forEach((line) => line.setAttribute('opacity', '1'));
+					tooltip.innerHTML = '';
+				}
+			};
+
+			const visualUnitContainer = document.querySelector(
+				'div.muze-grid-center:has(svg.muze-visual-unit)'
+			);
+
+			if (visualUnitContainer instanceof HTMLDivElement) {
+				visualUnitContainer?.addEventListener('mouseover', onMouseOver);
+				canvas.once('beforeDisposed', () => {
+					console.log('Aaah!');
+					visualUnitContainer?.removeEventListener('mouseover', onMouseOver);
+				});
+			}
+		});
 
 		return () => {
 			canvas.off('afterRendered', onRenderComplete);
