@@ -1,0 +1,14 @@
+[
+	{ "name": "Year Int", "type": "dimension" },
+	{ "name": "Year", "type": "dimension" },
+	{ "name": "Gender", "type": "dimension" },
+	{ "name": "Country", "type": "dimension" },
+	{ "name": "Every 5 years T|F", "type": "dimension" },
+	{ "name": "Country: OECD Avg ", "type": "dimension" },
+	{ "name": "min_age", "type": "measure", "defAggFn": "avg" },
+	{ "name": "q1_age", "type": "measure", "defAggFn": "avg" },
+	{ "name": "median_age", "type": "measure", "defAggFn": "avg" },
+	{ "name": "q3_age", "type": "measure", "defAggFn": "avg" },
+	{ "name": "max_age", "type": "measure", "defAggFn": "avg" },
+	{ "name": "Effective labour market exit age", "type": "measure", "defAggFn": "avg" }
+]

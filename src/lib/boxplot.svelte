@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
-	import { median as d3Median, zip as d3Zip } from 'd3-array';
+	import { zip as d3Zip } from 'd3-array';
 	import { computePosition, autoPlacement, shift, offset } from '@floating-ui/dom';
 	import type { Canvas, DataModel as TDataModel } from './types';
 
@@ -109,7 +109,9 @@
 					tooltip: {
 						formatter: ({ dataModel }: { dataModel: TDataModel }) => {
 							const country = dataModel.getField<string>('Country').data().at(0);
-							const year = dataModel.getField('Year Int').data().at(0);
+							const year = new Date(
+								dataModel.getField<number>('Year').data().at(0) ?? 0
+							).getFullYear();
 							const exitAge = dataModel.getField('Effective labour market exit age').data().at(0);
 							return html`<div class="pt-1"><span class="font-bold">${country}</span>, ${year}</div>
 								<div class="pb-2">
@@ -151,14 +153,14 @@
 	});
 
 	const onRenderComplete = ({ emitter: canvas }: { emitter: Canvas }) => {
-		console.log(canvas.xAxes().map((xAxis) => xAxis.domain()));
 		canvas
 			.composition()
 			.visualGroup.placeholderInfo()
 			.values.forEach((r) =>
 				r.forEach((c) => {
 					const visualUnit = c.source();
-					const rootSVG = visualUnit._graphics.rootSvg.node();
+					const rootSVG = visualUnit._graphics.rootSvg?.node();
+					if (!rootSVG) return;
 					const { width: rootSVGWidth, x: rootSVGLeft } = rootSVG.getBBox();
 					const visualUnitLayers = visualUnit.layers();
 
@@ -166,10 +168,7 @@
 						const yAxis = layer.axes().y;
 						const yScale = yAxis.scale();
 						const pointGroups = layer._points;
-						const medians = pointGroups.map(
-							(points) =>
-								d3Median(points, ({ data }) => data['Effective labour market exit age']) ?? 0
-						);
+						const medians = pointGroups.map((points) => points.at(0)?.data['median_age'] ?? 0);
 						const yPxes = medians.map((median) => yScale(median));
 						const medianGroup = document.createElementNS(SVG_NS, 'g');
 						medianGroup.classList.add('median-group');
@@ -269,11 +268,27 @@
 		}
 	};
 
+	const onFemaleRenderComplete = ({ emitter: canvas }: { emitter: Canvas }) => {
+		onRenderComplete({ emitter: canvas });
+
+		canvas.yAxes().forEach((yAxis) => {
+			const axisSVG = yAxis.mount();
+			const axisName = axisSVG.querySelector('text.muze-axis-name');
+
+			if (axisName instanceof SVGTextElement) {
+				axisName.setAttribute(
+					'transform',
+					`matrix(0, -1, 1, 0, -67.2, ${axisSVG.getBoundingClientRect().height - 18})`
+				);
+			}
+		});
+	};
+
 	$effect(() => {
-		femaleCanvas.on('afterRendered', onRenderComplete);
+		femaleCanvas.on('afterRendered', onFemaleRenderComplete);
 
 		return () => {
-			femaleCanvas.off('afterRendered', onRenderComplete);
+			femaleCanvas.off('afterRendered', onFemaleRenderComplete);
 		};
 	});
 
@@ -317,7 +332,7 @@
 
 <style>
 	div.boxplot :global(text.muze-axis-name) {
-		transform: translateY(595px) translateX(-68px) rotate(-90deg) !important;
+		text-anchor: start !important;
 	}
 
 	div.boxplot :global(div.muze-grid-center td.muze-grid-td) {

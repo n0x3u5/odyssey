@@ -21,7 +21,7 @@ interface Canvas {
 				values: Array<
 					Array<{
 						source: () => {
-							_graphics: { rootSvg: { node: () => SVGSVGElement } };
+							_graphics: { rootSvg?: { node: () => SVGSVGElement } };
 							layers: () => Array<{
 								mount: () => SVGGElement;
 								_points: Array<Array<{ data: Record<string, number> }>>;
