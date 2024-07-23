@@ -97,7 +97,6 @@
 
 	$effect(() => {
 		viz;
-		console.log(canvas.data().getData());
 		untrack(() => canvas.mount(viz));
 
 		return () => {

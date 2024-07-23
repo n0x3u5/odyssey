@@ -6,11 +6,10 @@
 	const pageInfos = $derived(data.pageInfos);
 	const nextPage = $derived(data.nextPageInfo);
 
-	const imageModules = import.meta.glob<Record<string, Picture>>('/static/images/*.png', {
+	const imageModules = import.meta.glob<Record<string, Picture>>('../images/*.png', {
 		eager: true,
 		query: {
 			enhanced: true,
-			url: true,
 			w: 112,
 			h: 112
 		}
@@ -84,7 +83,7 @@
 						<enhanced:img
 							{alt}
 							class="m-0 size-[112px] rounded border-2 border-gray-200 transition-opacity hover:opacity-80 hover:brightness-105"
-							src={imageModules[`/static/images/${name}.png`].default}
+							src={imageModules[`../images/${name}.png`].default}
 						></enhanced:img>
 					</a>
 				{/each}

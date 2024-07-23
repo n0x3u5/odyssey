@@ -51,6 +51,7 @@
     "svelte-preprocess"
   ],
   "dependencies": {
+    "@floating-ui/dom": "^1.6.8",
     "@viz/muze": "^4.7.1",
     "d3-array": "^3.2.4"
   }
