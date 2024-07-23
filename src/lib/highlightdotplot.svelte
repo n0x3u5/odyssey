@@ -126,10 +126,10 @@
 								.at(0);
 							const isSelectedCountry =
 								dataModel.getField('Selected Country').data().at(0) === 'True';
-							return html`<div><span class="font-bold">${country}</span>, ${year}</div>
+							return html`<div class="pt-1"><span class="font-bold">${country}</span>, ${year}</div>
 								${isSelectedCountry
-									? `<div><span class="font-bold text-blue-500">${exitAge}</span> years</div>`
-									: `<div><span class="font-bold text-neutral-400">${exitAge}</span> years</div>`}`;
+									? `<div class="pb-2"><span class="font-bold text-blue-500">${exitAge}</span> years</div>`
+									: `<div class="pb-2"><span class="font-bold text-neutral-400">${exitAge}</span> years</div>`}`;
 						}
 					}
 				}

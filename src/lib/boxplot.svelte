@@ -2,7 +2,7 @@
 	import { untrack } from 'svelte';
 	import { median as d3Median, zip as d3Zip } from 'd3-array';
 	import { computePosition, autoPlacement, shift, offset } from '@floating-ui/dom';
-	import type { Canvas } from './types';
+	import type { Canvas, DataModel as TDataModel } from './types';
 
 	const SVG_NS = 'http://www.w3.org/2000/svg';
 
@@ -19,8 +19,9 @@
 	} = $props();
 
 	const DataModel = $derived(muze.DataModel);
+	const html = $derived(muze.Operators.html);
 	const loadedData = $derived(DataModel.loadDataSync(data, schema));
-	const dm = $derived(
+	const [femaleDM, maleDM] = $derived(
 		new DataModel(loadedData)
 			.calculateVariable(
 				{ name: 'Jitter', type: 'measure', defAggFn: 'avg' },
@@ -36,19 +37,33 @@
 					{ field: 'Country: OECD Avg ', value: 'OECD average', operator: 'neq' }
 				]
 			})
+			.select({ field: 'Gender', value: 'Female', operator: 'eq' }, { mode: 'all' })
 	);
 	const env = $derived(muze());
-	const canvas = $derived(env.canvas());
+	const femaleCanvas = $derived(env.canvas());
+	const maleCanvas = $derived(env.canvas());
 
-	let viz: HTMLDivElement | null = $state(null);
+	let femaleViz: HTMLDivElement | null = $state(null);
+	let maleViz: HTMLDivElement | null = $state(null);
 
-	$effect(() => {
+	const updateCanvas = ({
+		canvas,
+		dataModel,
+		color,
+		showYAxis,
+		colorName
+	}: {
+		canvas: Canvas;
+		dataModel: TDataModel;
+		color: `#${string}`;
+		showYAxis: boolean;
+		colorName: string;
+	}) => {
 		canvas
-			.data(dm)
+			.data(dataModel)
 			.rows(['Effective labour market exit age'])
-			.columns(['Gender', 'Year', 'Jitter'])
+			.columns(['Year', 'Jitter'])
 			.detail(['Country'])
-			.color('Gender')
 			.config({
 				legend: { show: false },
 				axes: {
@@ -57,7 +72,9 @@
 						show: false
 					},
 					y: {
-						domain: [50, 80],
+						show: showYAxis,
+						name: 'AGE OF LABOUR MARKET EXIT →',
+						domain: [49, 81],
 						tickFormat: ({
 							formattedValue,
 							rawValue
@@ -81,23 +98,60 @@
 								return formattedValue;
 							}
 						}
-					}
+					},
+					headers: { show: false }
 				},
 				gridLines: {
-					show: false
+					x: { show: false },
+					y: { show: true }
+				},
+				interaction: {
+					tooltip: {
+						formatter: ({ dataModel }: { dataModel: TDataModel }) => {
+							const country = dataModel.getField<string>('Country').data().at(0);
+							const year = dataModel.getField('Year Int').data().at(0);
+							const exitAge = dataModel.getField('Effective labour market exit age').data().at(0);
+							return html`<div class="pt-1"><span class="font-bold">${country}</span>, ${year}</div>
+								<div class="pb-2">
+									<span class="${colorName} font-bold">${exitAge}</span> years
+								</div>`;
+						}
+					}
 				}
 			})
 			.layers([
 				{
 					mark: 'point',
 					encoding: {
+						color: { value: () => color },
 						size: { value: () => 6 }
 					}
 				}
 			]);
+	};
+
+	$effect(() => {
+		updateCanvas({
+			canvas: femaleCanvas,
+			dataModel: femaleDM,
+			color: '#6366f1',
+			showYAxis: true,
+			colorName: 'text-indogo-500'
+		});
+	});
+
+	$effect(() => {
+		updateCanvas({
+			canvas: maleCanvas,
+			dataModel: maleDM,
+			color: '#eab308',
+			showYAxis: false,
+			colorName: 'text-yellow-500'
+		});
 	});
 
 	const onRenderComplete = ({ emitter: canvas }: { emitter: Canvas }) => {
+		console.log(canvas.xAxes().map((xAxis) => xAxis.domain()));
 		canvas
 			.composition()
 			.visualGroup.placeholderInfo()
@@ -133,7 +187,7 @@
 							medianLine.setAttribute('stroke', 'black');
 							medianLineTracker.setAttribute('stroke', 'transparent');
 							medianLine.setAttribute('stroke-width', '1px');
-							medianLineTracker.setAttribute('stroke-width', '4px');
+							medianLineTracker.setAttribute('stroke-width', '6px');
 							medianLine.setAttribute('data-median', `${median}`);
 							medianLineTracker.setAttribute('data-median', `${median}`);
 							medianLine.setAttribute('shape-rendering', 'crispEdges');
@@ -146,86 +200,154 @@
 					});
 				})
 			);
+
+		const rootEl = canvas.mount();
+		const tooltip = document.createElement('div');
+
+		tooltip.classList.add(
+			'bg-white',
+			'text-neutral-600',
+			'shadow-md',
+			'p-2',
+			'text-xs',
+			`font-['Source_Sans_Pro']`,
+			'absolute',
+			'top-0',
+			'left-0',
+			'w-max',
+			'border',
+			'border-neutral-200',
+			'hidden'
+		);
+
+		rootEl.parentElement?.parentElement?.appendChild(tooltip);
+
+		const onMouseOut = () => {
+			tooltip.classList.remove('block');
+			tooltip.classList.add('hidden');
+			rootEl
+				.querySelectorAll('line.median-line')
+				.forEach((line) => line.setAttribute('opacity', '1'));
+			tooltip.innerHTML = '';
+		};
+
+		const onMouseOver = (e: MouseEvent) => {
+			const target = e.target as SVGElement;
+			if (target.classList.contains('median-line-tracker')) {
+				const medianValue = (+(target.getAttribute('data-median') ?? 0)).toFixed(1);
+				computePosition(target, tooltip, {
+					middleware: [autoPlacement(), shift({ padding: 8 }), offset(8)]
+				}).then(({ x, y }) => {
+					Object.assign(tooltip.style, {
+						left: `${x}px`,
+						top: `${y}px`
+					});
+				});
+				tooltip.appendChild(document.createTextNode(`Median age: ${medianValue} years`));
+				rootEl
+					.querySelectorAll('line.median-line')
+					.forEach((line) => line.setAttribute('opacity', '0.4'));
+				tooltip.classList.remove('hidden');
+				tooltip.classList.add('block');
+			} else {
+				onMouseOut();
+			}
+		};
+
+		const visualUnitContainer = rootEl.querySelector(
+			'div.muze-grid-center:has(svg.muze-visual-unit)'
+		);
+
+		if (visualUnitContainer instanceof HTMLDivElement) {
+			visualUnitContainer?.addEventListener('mouseover', onMouseOver);
+			visualUnitContainer?.addEventListener('mouseout', onMouseOut);
+			canvas.once('beforeDisposed', () => {
+				tooltip.remove();
+				visualUnitContainer?.removeEventListener('mouseover', onMouseOver);
+				visualUnitContainer?.removeEventListener('mouseout', onMouseOut);
+			});
+		}
 	};
 
 	$effect(() => {
-		canvas.on('afterRendered', onRenderComplete);
-		canvas.on('afterRendered', ({ emitter: canvas }: { emitter: Canvas }) => {
-			const rootEl = canvas.mount();
-			const tooltip = document.createElement('div');
-
-			tooltip.classList.add(
-				'bg-white',
-				'text-neutral-600',
-				'shadow-md',
-				'p-2',
-				'text-xs',
-				`font-['Source_Sans_Pro']`,
-				'absolute',
-				'top-0',
-				'left-0',
-				'w-max',
-				'border',
-				'border-neutral-200',
-				'hidden'
-			);
-
-			rootEl.appendChild(tooltip);
-
-			const onMouseOver = (e: MouseEvent) => {
-				const target = e.target as SVGElement;
-				if (target.classList.contains('median-line-tracker')) {
-					const medianValue = (+(target.getAttribute('data-median') ?? 0)).toFixed(1);
-					computePosition(target, tooltip, {
-						middleware: [autoPlacement(), shift({ padding: 8 }), offset(8)]
-					}).then(({ x, y }) => {
-						Object.assign(tooltip.style, {
-							left: `${x}px`,
-							top: `${y}px`
-						});
-					});
-					tooltip.appendChild(document.createTextNode(`Median age: ${medianValue} years`));
-					document
-						.querySelectorAll('line.median-line')
-						.forEach((line) => line.setAttribute('opacity', '0.4'));
-					tooltip.classList.remove('hidden');
-					tooltip.classList.add('block');
-				} else {
-					tooltip.classList.remove('block');
-					tooltip.classList.add('hidden');
-					document
-						.querySelectorAll('line.median-line')
-						.forEach((line) => line.setAttribute('opacity', '1'));
-					tooltip.innerHTML = '';
-				}
-			};
-
-			const visualUnitContainer = document.querySelector(
-				'div.muze-grid-center:has(svg.muze-visual-unit)'
-			);
-
-			if (visualUnitContainer instanceof HTMLDivElement) {
-				visualUnitContainer?.addEventListener('mouseover', onMouseOver);
-				canvas.once('beforeDisposed', () => {
-					console.log('Aaah!');
-					visualUnitContainer?.removeEventListener('mouseover', onMouseOver);
-				});
-			}
-		});
+		femaleCanvas.on('afterRendered', onRenderComplete);
 
 		return () => {
-			canvas.off('afterRendered', onRenderComplete);
+			femaleCanvas.off('afterRendered', onRenderComplete);
 		};
 	});
 
 	$effect(() => {
-		viz;
-		untrack(() => canvas.mount(viz));
+		maleCanvas.on('afterRendered', onRenderComplete);
 
 		return () => {
-			canvas.dispose();
+			maleCanvas.off('afterRendered', onRenderComplete);
+		};
+	});
+
+	$effect(() => {
+		maleViz;
+		untrack(() => maleCanvas.mount(maleViz));
+
+		return () => {
+			maleCanvas.dispose();
+		};
+	});
+
+	$effect(() => {
+		femaleViz;
+		untrack(() => femaleCanvas.mount(femaleViz));
+
+		return () => {
+			femaleCanvas.dispose();
 		};
 	});
 </script>
 
-<div class="boxplot size-full" bind:this={viz}></div>
+<div class="boxplot flex grow gap-4">
+	<div class="flex grow-[545] flex-col">
+		<h2>FEMALE</h2>
+		<div class="not-prose grow" bind:this={femaleViz}></div>
+	</div>
+	<div class="flex grow-[455] flex-col">
+		<h2>MALE</h2>
+		<div class="not-prose grow" bind:this={maleViz}></div>
+	</div>
+</div>
+
+<style>
+	div.boxplot :global(text.muze-axis-name) {
+		transform: translateY(595px) translateX(-68px) rotate(-90deg) !important;
+	}
+
+	div.boxplot :global(div.muze-grid-center td.muze-grid-td) {
+		border-top: transparent !important;
+		border-bottom: transparent !important;
+		border-color: #ebebeb !important;
+	}
+
+	div.boxplot :global(div.muze-grid-center td.muze-grid-td:has(div.muze-axis-cell)) {
+		border: transparent !important;
+	}
+
+	div.boxplot :global(div.muze-grid-top td.muze-grid-td) {
+		border-color: transparent !important;
+	}
+
+	div.boxplot :global(div.muze-text-cell) {
+		justify-content: center !important;
+		color: #000000 !important;
+	}
+
+	div.boxplot :global(g.muze-ticks line) {
+		stroke: #000000 !important;
+	}
+
+	div.boxplot :global(g.muze-ticks text) {
+		fill: #000000 !important;
+	}
+
+	div.boxplot :global(text.muze-axis-name) {
+		fill: #000000 !important;
+	}
+</style>

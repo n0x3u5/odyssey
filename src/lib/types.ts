@@ -9,6 +9,7 @@ interface Canvas {
 	layers(layers: Array<unknown>): Canvas;
 	config(config: Record<string, unknown>): Canvas;
 	yAxes(): Array<{ mount: () => SVGSVGElement }>;
+	xAxes(): Array<{ mount: () => SVGSVGElement; domain: () => [number, number] }>;
 	color(color: string): Canvas;
 	detail(detail: Array<string>): Canvas;
 	mount(): HTMLDivElement;

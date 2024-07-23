@@ -119,8 +119,10 @@
 								.getField('Effective labour market exit age (bins)')
 								.data()
 								.at(0);
-							return html`<div><span class="font-bold">${country}</span>, ${year}</div>
-								<div><span class="${colorName} font-bold">${exitAge}</span> years</div>`;
+							return html`<div class="pt-1"><span class="font-bold">${country}</span>, ${year}</div>
+								<div class="pb-2">
+									<span class="${colorName} font-bold">${exitAge}</span> years
+								</div>`;
 						}
 					}
 				}
