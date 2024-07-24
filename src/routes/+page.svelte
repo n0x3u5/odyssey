@@ -14,6 +14,10 @@
 			h: 112
 		}
 	});
+
+	$effect(() => {
+		localStorage.clear();
+	});
 </script>
 
 <main class="min-h-screen p-4">

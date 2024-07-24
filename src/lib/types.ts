@@ -7,6 +7,7 @@ interface Canvas {
 			| Array<Array<string | { field: string; as: 'discrete' | 'continuous' }>>
 	): Canvas;
 	layers(layers: Array<unknown>): Canvas;
+	title(title: string, options: { align: 'left' }): Canvas;
 	config(config: Record<string, unknown>): Canvas;
 	yAxes(): Array<{ mount: () => SVGSVGElement }>;
 	xAxes(): Array<{ mount: () => SVGSVGElement; domain: () => [number, number] }>;

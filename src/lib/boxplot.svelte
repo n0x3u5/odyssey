@@ -153,7 +153,8 @@
 		color,
 		showYAxis,
 		colorName,
-		showBox
+		showBox,
+		title
 	}: {
 		canvas: Canvas;
 		dataModel: TDataModel;
@@ -161,9 +162,11 @@
 		showYAxis: boolean;
 		colorName: string;
 		showBox: boolean;
+		title: string;
 	}) => {
 		canvas
 			.data(dataModel)
+			.title(title, { align: 'left' })
 			.rows(
 				showBox
 					? [
@@ -283,7 +286,8 @@
 			color: '#6366f1',
 			showYAxis: true,
 			colorName: 'text-indogo-500',
-			showBox: isAdvanced
+			showBox: isAdvanced,
+			title: 'Female'
 		});
 	});
 
@@ -294,7 +298,8 @@
 			color: '#eab308',
 			showYAxis: false,
 			colorName: 'text-yellow-500',
-			showBox: isAdvanced
+			showBox: isAdvanced,
+			title: 'Male'
 		});
 	});
 
@@ -463,28 +468,29 @@
 	});
 </script>
 
-<div class="boxplot flex grow">
-	<div class="flex grow-[545] flex-col">
-		<h2>FEMALE</h2>
-		<div
-			class="not-prose grow"
-			style:--boxOpacity={boxOpacity}
-			style:--medianOpacity={1 - boxOpacity}
-			bind:this={femaleViz}
-		></div>
-	</div>
-	<div class="flex grow-[455] flex-col">
-		<h2>MALE</h2>
-		<div
-			class="not-prose grow"
-			style:--boxOpacity={boxOpacity}
-			style:--medianOpacity={1 - boxOpacity}
-			bind:this={maleViz}
-		></div>
-	</div>
+<div class="boxplot flex grow gap-4">
+	<div
+		class="not-prose grow-[545]"
+		style:--boxOpacity={boxOpacity}
+		style:--medianOpacity={1 - boxOpacity}
+		bind:this={femaleViz}
+	></div>
+	<div
+		class="not-prose grow-[455]"
+		style:--boxOpacity={boxOpacity}
+		style:--medianOpacity={1 - boxOpacity}
+		bind:this={maleViz}
+	></div>
 </div>
 
-<style>
+<style lang="postcss">
+	div.boxplot :global(div.muze-title-cell) {
+		@apply font-sans;
+		@apply text-2xl;
+		@apply text-black;
+		@apply !pl-0;
+	}
+
 	div.boxplot :global(text.muze-axis-name) {
 		text-anchor: start !important;
 	}
@@ -507,7 +513,7 @@
 		border-color: transparent !important;
 	}
 
-	div.boxplot :global(div.muze-text-cell) {
+	div.boxplot :global(td.muze-grid-td div.muze-text-cell) {
 		justify-content: center !important;
 		color: #000000 !important;
 	}
