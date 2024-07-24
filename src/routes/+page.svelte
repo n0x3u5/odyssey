@@ -10,8 +10,8 @@
 		eager: true,
 		query: {
 			enhanced: true,
-			w: 112,
-			h: 112
+			w: 144,
+			h: 144
 		}
 	});
 
@@ -21,19 +21,16 @@
 </script>
 
 <main class="min-h-screen p-4">
-	<section class="prose m-auto max-w-4xl prose-hr:my-4 prose-hr:border-black">
+	<section
+		class="prose m-auto max-w-4xl prose-h1:max-w-96 prose-h1:text-balance prose-hr:my-4 prose-hr:border-black"
+	>
 		<article>
 			<div>
 				<header>
 					<h1>
-						<span class="text-yellow-500">ONE</span>
-						<br />
-						DATASET,
-						<br />
+						<span class="text-yellow-500">ONE</span> DATASET,
 						<span class="text-indigo-500">NINETEEN</span>
-						<span class="font-extralight underline"><em>MUZE</em></span>
-						<br />
-						VISUALIZATIONS
+						<span class="font-extralight underline"><em>MUZE</em></span> VISUALIZATIONS
 					</h1>
 				</header>
 				<section>
@@ -81,12 +78,12 @@
 					</span>
 				</p>
 			</aside>
-			<div class="flex flex-wrap gap-4">
+			<div class="flex flex-wrap justify-center gap-4">
 				{#each pageInfos as { name, alt }}
-					<a href={`/viz/${name}`}>
+					<a class="inline-block" href={`/viz/${name}`}>
 						<enhanced:img
 							{alt}
-							class="m-0 size-[112px] rounded border-2 border-gray-200 transition-opacity hover:opacity-80 hover:brightness-105"
+							class="m-0 size-36 rounded border-2 border-gray-200 transition-opacity hover:opacity-80 hover:brightness-105"
 							src={imageModules[`../images/${name}.png`].default}
 						></enhanced:img>
 					</a>
@@ -121,5 +118,6 @@
 <style>
 	picture {
 		margin: 0;
+		display: inline-block;
 	}
 </style>

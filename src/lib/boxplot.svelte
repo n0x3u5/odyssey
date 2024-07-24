@@ -287,7 +287,7 @@
 			showYAxis: true,
 			colorName: 'text-indogo-500',
 			showBox: isAdvanced,
-			title: 'Female'
+			title: 'FEMALE'
 		});
 	});
 
@@ -299,7 +299,7 @@
 			showYAxis: false,
 			colorName: 'text-yellow-500',
 			showBox: isAdvanced,
-			title: 'Male'
+			title: 'MALE'
 		});
 	});
 
