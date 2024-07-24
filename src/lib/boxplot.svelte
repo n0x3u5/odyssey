@@ -473,12 +473,14 @@
 		class="not-prose grow-[545]"
 		style:--boxOpacity={boxOpacity}
 		style:--medianOpacity={1 - boxOpacity}
+		style:--pointOpacity={isAdvanced ? 0.7 : 1}
 		bind:this={femaleViz}
 	></div>
 	<div
 		class="not-prose grow-[455]"
 		style:--boxOpacity={boxOpacity}
 		style:--medianOpacity={1 - boxOpacity}
+		style:--pointOpacity={isAdvanced ? 0.7 : 1}
 		bind:this={maleViz}
 	></div>
 </div>
@@ -542,5 +544,9 @@
 	div.boxplot :global(.muze-layer-bar) {
 		stroke: #000000 !important;
 		opacity: var(--boxOpacity);
+	}
+
+	div.boxplot :global(.muze-layer-point) {
+		opacity: var(--pointOpacity) !important;
 	}
 </style>
