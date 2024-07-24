@@ -7,16 +7,20 @@
 	let {
 		muze,
 		selectedCountry = 'Mexico',
-		dataModel
+		data = [[]],
+		schema = []
 	}: {
 		muze: Muze;
 		selectedCountry?: string;
-		dataModel: Muze['DataModel'];
+		data: Array<Array<unknown>>;
+		schema: Array<{ name: string; type: 'dimension' | 'measure' }>;
 	} = $props();
 
 	const html = $derived(muze.Operators.html);
+	const DataModel = $derived(muze.DataModel);
+	const loadedData = $derived(DataModel.loadDataSync(data, schema));
 	const rootDM = $derived(
-		dataModel
+		new DataModel(loadedData)
 			.select({
 				operator: 'and',
 				conditions: [

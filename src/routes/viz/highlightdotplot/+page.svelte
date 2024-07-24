@@ -1,38 +1,75 @@
 <script lang="ts">
 	import { HighlightDotPlot } from '$lib';
 	import type { PageData } from './$types';
+	import { DataModel, SortOrder } from '@viz/datamodel';
 
 	let { data: pageData }: { data: PageData } = $props();
 
 	const schema = $derived(pageData.schema ?? []);
 	const data = $derived(pageData.data ?? [[]]);
 
-	let selectedCountry = $state('Mexico');
+	const countries = $derived.by(() => {
+		let selectedDM = new DataModel(DataModel.loadDataSync(data, schema)).select({
+			field: 'Country',
+			value: 'OECD average',
+			operator: 'neq'
+		});
+
+		if (Array.isArray(selectedDM)) {
+			selectedDM = selectedDM[0];
+		}
+
+		return (
+			selectedDM
+				.sort([['Country', SortOrder.ASC]])
+				.getField('Country')
+				?.uniques() ?? []
+		);
+	});
+
+	let selectedCountry: string | null = $state(null);
+
+	$effect(() => {
+		if (selectedCountry === null) {
+			selectedCountry = localStorage.getItem('selectedCountry') ?? 'Mexico';
+		}
+	});
+
+	$effect(() => {
+		if (localStorage.getItem('selectedCountry') !== selectedCountry && selectedCountry !== null) {
+			localStorage.setItem('selectedCountry', selectedCountry);
+		}
+	});
 </script>
 
 <div
 	class="prose m-auto size-full max-w-4xl prose-h1:mb-0 prose-h1:mt-4 prose-h2:mb-0 prose-h2:mt-2"
 >
-	<main class="flex size-full flex-col pb-2">
-		<h1>
-			DISTRIBUTION OF COUNTRIES BY (<span class="uppercase text-blue-500">{selectedCountry}</span>
-			vs. <span class="text-neutral-400">OTHERS</span>) AGE OF LABOUR MARKET EXIT BY DECADE,
-			1972-2022
-		</h1>
-		{#await import('@viz/muze') then { default: muze }}
-			{@const dataModel = new muze.DataModel(muze.DataModel.loadDataSync(data, schema)).sort([
-				['Country', 'asc']
-			])}
-			{@const countries = dataModel.getField('Country').uniques()}
+	<main class="flex size-full flex-col py-4">
+		<div class="self-end">
+			<label for="country">Country to highlight:</label>
 			<select
+				id="country"
 				bind:value={selectedCountry}
-				class="max-w-max self-end rounded border border-gray-500 uppercase"
+				class="h-7 min-w-48 max-w-max rounded border border-gray-500 py-0 pl-2 pt-0 uppercase"
 			>
-				{#each countries as country}
-					<option value={country}>{country}</option>
-				{/each}
+				{#if selectedCountry != null}
+					{#each countries as country}
+						<option selected={selectedCountry === country} value={country}>{country}</option>
+					{/each}
+				{/if}
 			</select>
-			<HighlightDotPlot {muze} {dataModel} {selectedCountry}></HighlightDotPlot>
+		</div>
+		{#if selectedCountry != null}
+			<h1>
+				DISTRIBUTION OF COUNTRIES BY (<span class="uppercase text-blue-500">{selectedCountry}</span>
+				vs. <span class="text-neutral-400">OTHERS</span>) AGE OF LABOUR MARKET EXIT BY DECADE,
+				1972-2022
+			</h1>
+		{/if}
+		{#await import('@viz/muze') then { default: muze }}
+			<HighlightDotPlot {muze} {data} {schema} selectedCountry={selectedCountry ?? ''}
+			></HighlightDotPlot>
 		{/await}
 	</main>
 </div>
