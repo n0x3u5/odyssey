@@ -11,7 +11,7 @@
 </script>
 
 <main
-	class="prose m-auto flex size-full max-w-4xl flex-col p-4 prose-h1:mb-0 prose-h1:mt-4 prose-h2:my-2"
+	class="prose m-auto flex size-full max-w-4xl flex-col py-4 prose-h1:mb-0 prose-h1:mt-4 prose-h2:my-2"
 >
 	<h1>
 		DISTRIBUTION OF OECD COUNTRIES BY EFFECTIVE AGE OF LABOUR MARKET EXIT FOR EACH 5 YEARS,

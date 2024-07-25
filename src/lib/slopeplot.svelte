@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
+	import type { DataModel as TDataModel, Layer } from './types';
 
 	type Muze = typeof import('@viz/muze').default;
 
@@ -117,7 +118,10 @@
 				interaction: {
 					tooltip: {
 						includeDataFromAllLayers: true,
-						formatter: ({ dataModel }, { context }) => {
+						formatter: (
+							{ dataModel }: { dataModel: TDataModel },
+							{ context }: { context: { targetLayer: Layer } }
+						) => {
 							const Country = dataModel.getField('Country').data().at(0);
 							const Gender = dataModel.getField('Gender').data().at(0);
 							// const 'Effective labour market exit age' = dataModel.getField('Effective labour market exit age');
@@ -158,25 +162,34 @@
 			.detail(['Country']);
 	});
 
-	$effect(() => {
-		canvas.on('afterRendered', () => {
-			document.querySelectorAll('g.muze-layer-text text').forEach((el) => {
+	const onAfterRendered = () => {
+		document
+			.querySelectorAll('g.muze-layer-text text')
+			// @ts-expect-error - TS doesn't know about __data__ property added by d3
+			.forEach((el: Element & { __data__: { data: Record<string, number> } }) => {
 				el.setAttribute('text-anchor', el.__data__.data['Year Int'] === 1972 ? 'end' : 'start');
 				el.setAttribute('alignment-baseline', 'text-before-edge');
 				el.setAttribute('dx', el.__data__.data['Year Int'] === 1972 ? '-8px' : '8px');
 			});
 
-			document.querySelectorAll('text.muze-ticks tspan').forEach((el) => {
-				el.setAttribute('dy', '25px');
-			});
-
-			document.querySelectorAll('text.muze-axis-name').forEach((el) => {
-				if (el instanceof SVGTextElement) {
-					const axisLength = el.ownerSVGElement?.getBoundingClientRect().height ?? 0;
-					el.setAttribute('transform', `translate(-21.2,${axisLength - 10})rotate(-90)`);
-				}
-			});
+		document.querySelectorAll('text.muze-ticks tspan').forEach((el) => {
+			el.setAttribute('dy', '25px');
 		});
+
+		document.querySelectorAll('text.muze-axis-name').forEach((el) => {
+			if (el instanceof SVGTextElement) {
+				const axisLength = el.ownerSVGElement?.getBoundingClientRect().height ?? 0;
+				el.setAttribute('transform', `translate(-21.2,${axisLength - 10})rotate(-90)`);
+			}
+		});
+	};
+
+	$effect(() => {
+		canvas.on('afterRendered', onAfterRendered);
+
+		return () => {
+			canvas.off('afterRendered', onAfterRendered);
+		};
 	});
 
 	$effect(() => {
