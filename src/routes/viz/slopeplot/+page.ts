@@ -5,9 +5,7 @@ const load: PageLoad = async ({ fetch }) => {
 		res.json()
 	);
 
-	const data = await fetch('/retirement_OECD/retirement_OECD_Extract.json').then((res) =>
-		res.json()
-	);
+	const data = await fetch('/retirement_OECD/slopeplot.json').then((res) => res.json());
 
 	return { schema, data };
 };
