@@ -27,11 +27,11 @@ const pageInfos = [
 	},
 	{
 		name: 'stripplot',
-		alt: 'Strip Plot'
+		alt: 'Highlight Strip Plot'
 	},
 	{
 		name: 'slopeplot',
-		alt: 'Slope Plot'
+		alt: 'Slope Graph'
 	},
 	{
 		name: 'heatmap',

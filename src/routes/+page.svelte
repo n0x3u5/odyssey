@@ -10,8 +10,8 @@
 		eager: true,
 		query: {
 			enhanced: true,
-			w: 144,
-			h: 144
+			w: 160,
+			h: 160
 		}
 	});
 
@@ -83,7 +83,7 @@
 					<a class="inline-block" href={`/viz/${name}`}>
 						<enhanced:img
 							{alt}
-							class="m-0 size-36 rounded border-2 border-gray-200 transition-opacity hover:opacity-80 hover:brightness-105"
+							class="m-0 size-40 rounded border-2 border-gray-200 transition-opacity hover:opacity-80 hover:brightness-105"
 							src={imageModules[`../images/${name}.png`].default}
 						></enhanced:img>
 					</a>
