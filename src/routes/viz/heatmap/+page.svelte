@@ -38,8 +38,11 @@
 	</div>
 	{#if selectedGender != null}
 		<h1>
-			DIFFERENCE IN AGE OF LABOUR MARKET EXIT FOR <span class="uppercase">{selectedGender}</span> FROM
-			OECD AVERAGE BY YEAR, 1972-2022
+			DIFFERENCE IN AGE OF LABOUR MARKET EXIT FOR
+			<br />
+			<span class="uppercase">{selectedGender}</span> FROM OECD AVERAGE BY YEAR,
+			<br />
+			1972-2022
 		</h1>
 	{/if}
 	{#await import('@viz/muze') then { default: muze }}
