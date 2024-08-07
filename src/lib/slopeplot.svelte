@@ -117,14 +117,13 @@
 				},
 				interaction: {
 					tooltip: {
-						includeDataFromAllLayers: true,
 						formatter: (
 							{ dataModel }: { dataModel: TDataModel },
 							{ context }: { context: { targetLayer: Layer } }
 						) => {
 							const Country = dataModel.getField('Country').data().at(0);
 							const Gender = dataModel.getField('Gender').data().at(0);
-							// const 'Effective labour market exit age' = dataModel.getField('Effective labour market exit age');
+
 							const selectedDM = context.targetLayer.data().select({
 								operator: 'and',
 								conditions: [

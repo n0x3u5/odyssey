@@ -38,12 +38,16 @@ const pageInfos = [
 		alt: 'Heatmap'
 	},
 	{
-		name: 'arrowplot',
-		alt: 'Arrow Plot'
+		name: 'lollipop',
+		alt: 'Lollipop Plot'
 	},
 	{
 		name: 'slopestrip',
 		alt: 'Slope and Strip Hybrid'
+	},
+	{
+		name: 'arrowplot',
+		alt: 'Arrow Plot'
 	},
 	{
 		name: 'smallmultiples',
@@ -72,10 +76,6 @@ const pageInfos = [
 	{
 		name: 'winloss',
 		alt: 'Win-Loss Chart'
-	},
-	{
-		name: 'lollipop',
-		alt: 'Lollipop Plot'
 	},
 	{
 		name: 'tilemap',

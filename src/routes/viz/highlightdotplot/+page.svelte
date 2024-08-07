@@ -47,7 +47,7 @@
 >
 	<main class="flex size-full flex-col py-4">
 		<div class="self-end">
-			<label for="country">Country to highlight:</label>
+			<label class="pr-2" for="country">Country to highlight:</label>
 			<select
 				id="country"
 				bind:value={selectedCountry}

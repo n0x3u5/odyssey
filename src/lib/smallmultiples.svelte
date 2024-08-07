@@ -1,7 +1,50 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
+	import type { DataModel as TDataModel } from './types';
 
 	type Muze = typeof import('@viz/muze').default;
+
+	const getCountryFromCoordinates = (col: string, row: string): string | null => {
+		const countryMatrix = [
+			['OECD average', 'Chile', 'Estonia', 'Hungary', 'Japan', 'Mexico', 'Portugal', 'Switzerland'],
+			[
+				'Australia',
+				'Colombia',
+				'Finland',
+				'Iceland',
+				'Korea',
+				'Netherlands',
+				'Slovak Republic',
+				'Türkiye'
+			],
+			[
+				'Austria',
+				'Costa Rica',
+				'France',
+				'Ireland',
+				'Latvia',
+				'New Zealand',
+				'Slovenia',
+				'United Kingdom'
+			],
+			['Belgium', 'Czechia', 'Germany', 'Israel', 'Lithuania', 'Norway', 'Spain', 'United States'],
+			['Canada', 'Denmark', 'Greece', 'Italy', 'Luxembourg', 'Poland', 'Sweden', null]
+		];
+
+		const rowIndex = parseInt(col) - 1;
+		const colIndex = parseInt(row) - 1;
+
+		if (
+			rowIndex >= 0 &&
+			rowIndex < countryMatrix.length &&
+			colIndex >= 0 &&
+			colIndex < countryMatrix[0].length
+		) {
+			return countryMatrix[rowIndex][colIndex] || null;
+		}
+
+		return null;
+	};
 
 	let {
 		muze,
@@ -14,6 +57,7 @@
 	} = $props();
 
 	const DataModel = $derived(muze.DataModel);
+	const html = $derived(muze.Operators.html);
 	const loadedData = $derived(DataModel.loadDataSync(data, schema));
 	const dm = $derived(
 		new DataModel(loadedData)
@@ -202,11 +246,83 @@
 					}
 				},
 				legend: {
-					show: false
+					show: false,
+					color: {
+						domainRangeMap: {
+							Female: '#6366f1',
+							Male: '#eab308'
+						}
+					}
 				},
 				axes: {
 					y: { compact: true, show: false },
-					x: { showAxisName: false }
+					x: {
+						showAxisName: false,
+						domain: [0, +new Date(2024, 0, 1)],
+						showAxisLine: false
+					}
+				},
+				gridLines: {
+					show: false
+				},
+				interaction: {
+					tooltip: {
+						formatter: ({ dataModel }: { dataModel: TDataModel }, p2) => {
+							const femaleValue = dataModel
+								.getField<number>('Effective labour market exit age (female)')
+								.data()
+								.at(0);
+							const maleValue = dataModel
+								.getField<number>('Effective labour market exit age (male)')
+								.data()
+								.at(0);
+							const yearValue = dataModel.getField<number>('Year Int').data().at(0);
+							const col = dataModel.getField<string>('Small multiples column1').data().at(0) ?? '0';
+							const row = dataModel.getField<string>('Small multiples row1').data().at(0) ?? '0';
+							const countryValue = getCountryFromCoordinates(col, row);
+							const otherValue = p2.context.targetLayer
+								.data()
+								.select({
+									operator: 'and',
+									conditions: [
+										{
+											field: 'Gender',
+											value: typeof femaleValue !== 'number' ? 'Female' : 'Male',
+											operator: 'eq'
+										},
+										{ field: 'Year Int', value: yearValue, operator: 'eq' },
+										{ field: 'Small multiples column1', value: col, operator: 'eq' },
+										{ field: 'Small multiples row1', value: row, operator: 'eq' }
+									]
+								})
+								.getField(
+									`Effective labour market exit age (${typeof femaleValue !== 'number' ? 'female' : 'male'})`
+								)
+								.data()
+								.at(0);
+
+							return html`<div class="flex flex-col gap-2 pb-1 text-black">
+								<div>
+									<p class="font-bold">${countryValue}</p>
+									<p>${yearValue}</p>
+								</div>
+								<div class="grid grid-cols-2 grid-rows-2">
+									${typeof maleValue === 'number'
+										? `<div>Male:</div>
+									<div><span class="font-bold text-yellow-500">${maleValue.toFixed(1)}</span> years</div>
+									<div>Female:</div>
+									<div><span class="font-bold text-indigo-500">${otherValue.toFixed(1)}</span> years</div>`
+										: ''}
+									${typeof femaleValue === 'number'
+										? `<div>Male:</div>
+									<div><span class="font-bold text-yellow-500">${otherValue.toFixed(1)}</span> years</div>
+									<div>Female:</div>
+										<div><span class="font-bold text-indigo-500">${femaleValue.toFixed(1)}</span> years</div>`
+										: ''}
+								</div>
+							</div>`;
+						}
+					}
 				}
 			});
 	});
@@ -221,4 +337,42 @@
 	});
 </script>
 
-<div class="smallmultiples size-full" bind:this={viz}></div>
+<div class="not-prose smallmultiples w-[110%] grow" bind:this={viz}></div>
+
+<style lang="postcss">
+	div.smallmultiples :global(div.muze-grid-center-2 tr.muze-grid-tr:last-child td.muze-grid-td) {
+		@apply !border-b-transparent;
+	}
+
+	div.smallmultiples
+		:global(div.muze-grid-center-2 tr.muze-grid-tr:last-child td.muze-grid-td:last-child) {
+		@apply !border-transparent;
+	}
+
+	div.smallmultiples :global(div.muze-grid-center-2 tr.muze-grid-tr:first-child td.muze-grid-td) {
+		@apply !border-t-neutral-300;
+	}
+
+	div.smallmultiples :global(line.muze-tick-lines) {
+		@apply !stroke-black;
+	}
+
+	div.smallmultiples :global(g.muze-ticks text) {
+		@apply !fill-black;
+		@apply !translate-y-1;
+	}
+
+	div.smallmultiples :global(div.muze-grid-bottom td.muze-grid-td) {
+		@apply !border-transparent;
+	}
+
+	div.smallmultiples :global(g.muze-layer-labels-group text) {
+		@apply !font-sans;
+		@apply !font-bold;
+		@apply !text-xs;
+	}
+
+	div.smallmultiples :global(g.muze-layer-line path) {
+		@apply !stroke-[1.5px];
+	}
+</style>

@@ -49,8 +49,8 @@
 			.calculateVariable(
 				{ name: '{Exit age diff from average}', type: 'measure', defAggFn: 'sum' },
 				['Gender', 'Effective labour market exit age'],
-				(gender: 'male' | 'female', exitAge: number) =>
-					+(exitAge - (gender === 'female' ? avgFemaleOECD : avgMaleOECD)).toFixed(2)
+				(gender: 'Male' | 'Female', exitAge: number) =>
+					exitAge - (gender === 'Female' ? avgFemaleOECD : avgMaleOECD)
 			)
 			.calculateVariable(
 				{ name: 'isNegativeAgeDiff', type: 'dimension' },
@@ -73,10 +73,11 @@
 		return canvas
 			.data(dm)
 			.rows(['Country'])
-			.columns(['Gender', '{Exit age diff from average}'])
+			.columns(['{Exit age diff from average}'])
 			.layers([
 				{
 					mark: 'bar',
+					transition: { disabled: true },
 					encoding: {
 						y: 'Country',
 						x: '{Exit age diff from average}',
@@ -99,7 +100,7 @@
 							filter: ({ rowData: { Country: val } }: { rowData: Record<string, unknown> }) =>
 								val === minCountry || val === maxCountry,
 							formatter: ({ rawValue }: { rawValue: number }) =>
-								rawValue < 0 ? `${rawValue.toFixed(2)} years` : `+${rawValue.toFixed(2)} years`
+								rawValue < 0 ? `${rawValue.toFixed(1)} years` : `+${rawValue.toFixed(1)} years`
 						}
 					}
 				}
@@ -114,10 +115,20 @@
 				},
 				axes: {
 					x: {
-						domain: [-9, 9]
+						domain: [-7.5, 7.5],
+						name: '← DIFFERENCE IN YEARS →',
+						showAxisLine: false,
+						tickFormat: ({
+							formattedValue,
+							rawValue
+						}: {
+							formattedValue: string;
+							rawValue: number;
+						}) => (rawValue <= 0 ? formattedValue : `+${formattedValue}`)
 					},
 					y: {
 						show: false,
+						compact: true,
 						fields: {
 							Country: {
 								ordering: {
@@ -137,6 +148,10 @@
 							Negative: '#2563eb'
 						}
 					}
+				},
+				interaction: {
+					highlight: { sideEffects: { tooltip: { enabled: false } } },
+					select: { sideEffects: { tooltip: { enabled: false } } }
 				}
 			});
 	};
@@ -171,15 +186,29 @@
 	});
 </script>
 
-<div class="lollipop flex size-full">
-	<div class="female grow" bind:this={femaleViz}></div>
-	<div class="male grow" bind:this={maleViz}></div>
+<div class="flex">
+	<div class="grow pb-2 text-center">
+		<p><strong>FEMALE</strong></p>
+		<p>OECD average:</p>
+		<p><strong>{avgFemaleOECD.toFixed(1)} years</strong></p>
+	</div>
+	<div class="grow pb-2 text-center">
+		<p><strong>MALE</strong></p>
+		<p>OECD average:</p>
+		<p><strong>{avgMaleOECD.toFixed(1)} years</strong></p>
+	</div>
+</div>
+<div class="lollipop flex h-full w-full flex-col">
+	<div class="flex grow">
+		<div class="not-prose female grow" bind:this={femaleViz}></div>
+		<div class="not-prose male grow" bind:this={maleViz}></div>
+	</div>
 </div>
 
 <style>
 	div.lollipop :global(g.muze-layer-point) {
 		fill-opacity: 1;
 		stroke: #d4d4d4;
-		stroke-width: 2;
+		stroke-width: 1;
 	}
 </style>

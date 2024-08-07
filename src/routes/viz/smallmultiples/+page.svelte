@@ -8,7 +8,11 @@
 	const data = $derived(pageData.data);
 </script>
 
-<main class="h-screen w-screen p-4">
+<main class="prose m-auto flex size-full max-w-4xl flex-col py-4">
+	<h1>
+		EFFECTIVE AGE OF LABOUR MARKET EXIT ACCROSS OECD COUNTRIES BY YEAR FOR FEMALE AND MALE,
+		1972-2022
+	</h1>
 	{#await import('@viz/muze') then { default: muze }}
 		<SmallMultiples {muze} {schema} {data}></SmallMultiples>
 	{/await}

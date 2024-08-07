@@ -22,7 +22,10 @@ type Layer = {
 	data: () => DataModel;
 	axes: () => {
 		x: { scale: () => { range: () => [number, number] } };
-		y: { scale: () => (domainValue: number | undefined) => number };
+		y: {
+			domain: () => Array<number>;
+			scale: () => (domainValue: number | undefined) => number;
+		};
 	};
 };
 
