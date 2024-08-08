@@ -10,8 +10,10 @@
 
 <main class="prose m-auto flex size-full max-w-4xl flex-col py-4">
 	<h1>
-		EFFECTIVE AGE OF LABOUR MARKET EXIT ACCROSS OECD COUNTRIES BY YEAR FOR FEMALE AND MALE,
-		1972-2022
+		EFFECTIVE AGE OF LABOUR MARKET EXIT ACCROSS OECD COUNTRIES BY YEAR FOR
+		<span class="text-indigo-500">FEMALE</span>
+		AND
+		<span class="text-yellow-500">MALE</span>, 1972-2022
 	</h1>
 	{#await import('@viz/muze') then { default: muze }}
 		<SmallMultiples {muze} {schema} {data}></SmallMultiples>

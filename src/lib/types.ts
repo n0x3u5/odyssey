@@ -31,7 +31,11 @@ type Layer = {
 
 interface Canvas {
 	data(data: unknown): Canvas;
-	rows(rows: Array<string> | Array<Array<string>>): Canvas;
+	rows(
+		rows:
+			| Array<string | { field: string; as: 'discrete' | 'continuous' }>
+			| Array<Array<string | { field: string; as: 'discrete' | 'continuous' }>>
+	): Canvas;
 	columns(
 		columns:
 			| Array<string | { field: string; as: 'discrete' | 'continuous' }>

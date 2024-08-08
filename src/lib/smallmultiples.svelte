@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
-	import type { DataModel as TDataModel } from './types';
+	import type { Layer, DataModel as TDataModel } from './types';
 
 	type Muze = typeof import('@viz/muze').default;
 
@@ -267,7 +267,10 @@
 				},
 				interaction: {
 					tooltip: {
-						formatter: ({ dataModel }: { dataModel: TDataModel }, p2) => {
+						formatter: (
+							{ dataModel }: { dataModel: TDataModel },
+							{ context: { targetLayer } }: { context: { targetLayer: Layer } }
+						) => {
 							const femaleValue = dataModel
 								.getField<number>('Effective labour market exit age (female)')
 								.data()
@@ -280,26 +283,27 @@
 							const col = dataModel.getField<string>('Small multiples column1').data().at(0) ?? '0';
 							const row = dataModel.getField<string>('Small multiples row1').data().at(0) ?? '0';
 							const countryValue = getCountryFromCoordinates(col, row);
-							const otherValue = p2.context.targetLayer
-								.data()
-								.select({
-									operator: 'and',
-									conditions: [
-										{
-											field: 'Gender',
-											value: typeof femaleValue !== 'number' ? 'Female' : 'Male',
-											operator: 'eq'
-										},
-										{ field: 'Year Int', value: yearValue, operator: 'eq' },
-										{ field: 'Small multiples column1', value: col, operator: 'eq' },
-										{ field: 'Small multiples row1', value: row, operator: 'eq' }
-									]
-								})
-								.getField(
-									`Effective labour market exit age (${typeof femaleValue !== 'number' ? 'female' : 'male'})`
-								)
-								.data()
-								.at(0);
+							const otherValue =
+								targetLayer
+									.data()
+									.select({
+										operator: 'and',
+										conditions: [
+											{
+												field: 'Gender',
+												value: typeof femaleValue !== 'number' ? 'Female' : 'Male',
+												operator: 'eq'
+											},
+											{ field: 'Year Int', value: yearValue, operator: 'eq' },
+											{ field: 'Small multiples column1', value: col, operator: 'eq' },
+											{ field: 'Small multiples row1', value: row, operator: 'eq' }
+										]
+									})
+									.getField<number>(
+										`Effective labour market exit age (${typeof femaleValue !== 'number' ? 'female' : 'male'})`
+									)
+									.data()
+									.at(0) ?? 0;
 
 							return html`<div class="flex flex-col gap-2 pb-1 text-black">
 								<div>

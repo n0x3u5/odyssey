@@ -1,35 +1,39 @@
 [
-  {
-    "name": "Year Int",
-    "type": "dimension"
-  },
-  {
-    "name": "Code",
-    "type": "dimension"
-  },
-  {
-    "name": "Country",
-    "type": "dimension"
-  },
-  {
-    "name": "UPPER(Gender)",
-    "type": "dimension"
-  },
-  {
-    "name": "Avg. Effective labour market exit age",
-    "type": "measure",
-    "defAggFn": "sum"
-  },
-  {
-    "name": "Point",
-    "type": "dimension"
-  },
-  {
-    "name": "Latitude (generated)",
-    "type": "dimension"
-  },
-  {
-    "name": "Longitude (generated)",
-    "type": "dimension"
-  }
+	{
+		"name": "Year Int",
+		"type": "dimension"
+	},
+	{
+		"name": "Code",
+		"type": "dimension"
+	},
+	{
+		"name": "Country",
+		"type": "dimension"
+	},
+	{
+		"name": "UPPER(Gender)",
+		"type": "dimension"
+	},
+	{
+		"name": "Avg. Effective labour market exit age",
+		"type": "measure",
+		"defAggFn": "sum"
+	},
+	{
+		"name": "Point",
+		"type": "dimension"
+	},
+	{
+		"name": "Latitude (generated)",
+		"type": "dimension",
+		"subtype": "binned",
+		"binSize": 1
+	},
+	{
+		"name": "Longitude (generated)",
+		"type": "dimension",
+		"subtype": "binned",
+		"binSize": 1
+	}
 ]

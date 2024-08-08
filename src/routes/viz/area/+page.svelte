@@ -8,7 +8,14 @@
 	const data = $derived(pageData.data);
 </script>
 
-<main class="h-screen w-screen p-4">
+<main class="prose m-auto flex size-full max-w-4xl flex-col prose-h1:mb-8 prose-h1:mt-4">
+	<h1>
+		PERCENTAGE OF OECD COUNTRIES BY LABOUR MARKET EXIT AGE GROUP: <span class="text-red-600"
+			>ABOVE 65 YEARS</span
+		>,
+		<span class="text-blue-700">60-65 YEARS</span>,
+		<span class="text-purple-400">UNDER 60 YEARS</span>, 1972-2022
+	</h1>
 	{#await import('@viz/muze') then { default: muze }}
 		<Area {muze} {schema} {data}></Area>
 	{/await}

@@ -70,16 +70,16 @@ const pageInfos = [
 		alt: 'Bivariate Area Chart'
 	},
 	{
+		name: 'tilemap',
+		alt: 'Tile Map'
+	},
+	{
 		name: 'area',
 		alt: 'Area Chart'
 	},
 	{
 		name: 'winloss',
 		alt: 'Win-Loss Chart'
-	},
-	{
-		name: 'tilemap',
-		alt: 'Tile Map'
 	}
 ];
 
