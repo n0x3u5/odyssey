@@ -47,6 +47,11 @@
 			.layers([{ mark: 'bar', transition: { disabled: true } }])
 			.color('difference_from_oecd_avg')
 			.config({
+				theme: {
+					font: {
+						fontSize: '8px'
+					}
+				},
 				rows: { headers: { show: false, fields: { Country: { show: false } } } },
 				columns: { headers: { show: false } },
 				axes: {
@@ -202,7 +207,7 @@
 <style>
 	div.heatmap :global(div.null) {
 		height: unset !important;
-		top: -1.2rem !important;
+		top: -1rem !important;
 	}
 
 	div.heatmap :global(div.muze-top-legend-container) {
@@ -224,6 +229,10 @@
 		padding-right: 1rem !important;
 		flex: 0 1 auto !important;
 		width: max-content !important;
-		gap: 0.5rem;
+		gap: 0.25rem;
+	}
+
+	div.heatmap :global(text.muze-ticks) {
+		font-size: 0.75rem !important;
 	}
 </style>

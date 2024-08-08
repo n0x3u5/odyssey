@@ -6,10 +6,44 @@
 
 	const schema = $derived(pageData.schema);
 	const data = $derived(pageData.data);
+
+	let selectedGender: string | null = $state(null);
+
+	$effect(() => {
+		if (selectedGender === null) {
+			selectedGender = localStorage.getItem('selectedGender') ?? 'Female';
+		}
+	});
+
+	$effect(() => {
+		if (localStorage.getItem('selectedGender') !== selectedGender && selectedGender !== null) {
+			localStorage.setItem('selectedGender', selectedGender);
+		}
+	});
 </script>
 
-<main class="h-screen w-screen p-4">
+<main class="prose m-auto flex size-full max-w-4xl flex-col pt-4 prose-h1:mb-0 prose-h1:mt-4">
+	<div class="self-end">
+		<label class="pr-2" for="country">Show for:</label>
+		<select
+			id="country"
+			bind:value={selectedGender}
+			class="h-7 min-w-48 max-w-max rounded border border-gray-500 py-0 pl-2 pt-0 uppercase"
+		>
+			{#if selectedGender != null}
+				<option selected={selectedGender === 'Female'} value={'Female'}>Female</option>
+				<option selected={selectedGender === 'Male'} value={'Male'}>Male</option>
+			{/if}
+		</select>
+	</div>
+	{#if selectedGender != null}
+		<h1>
+			CHANGE IN EFFECTIVE AGE OF LABOUR MARKET EXIT FOR <span class="uppercase"
+				>{selectedGender}</span
+			> ACROSS OECD COUNTRIES, 1972 vs. 2022
+		</h1>
+	{/if}
 	{#await import('@viz/muze') then { default: muze }}
-		<Arrowplot {muze} {schema} {data}></Arrowplot>
+		<Arrowplot {muze} {schema} {data} selectedGender={selectedGender ?? 'Female'}></Arrowplot>
 	{/await}
 </main>

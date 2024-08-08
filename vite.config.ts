@@ -8,7 +8,8 @@ export default defineConfig({
 	optimizeDeps: {
 		esbuildOptions: {
 			target: 'esnext'
-		}
+		},
+		exclude: ['@viz/datamodel']
 	},
 	build: {
 		target: 'esnext'

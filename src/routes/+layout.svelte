@@ -3,8 +3,14 @@
 	import type { Snippet } from 'svelte';
 	import { page } from '$app/stores';
 	import { IconSpriteSheet } from '$lib';
+	import { browser } from '$app/environment';
 
 	let { children }: { children: Snippet } = $props();
+
+	if (browser) {
+		import('@viz/muze');
+	}
+	import('@viz/datamodel');
 </script>
 
 <svelte:head>
@@ -23,6 +29,13 @@
 	<meta
 		property="og:description"
 		content="Discover the versatility of Muze with 19 different visualizations answering questions about labour market exits in OECD countries."
+	/>
+	<link
+		rel="preload"
+		href="https://fonts.gstatic.com/s/sourcesanspro/v11/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7lujVj9w.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin="true"
 	/>
 </svelte:head>
 

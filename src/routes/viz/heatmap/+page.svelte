@@ -22,9 +22,9 @@
 	});
 </script>
 
-<main class="prose m-auto flex size-full max-w-4xl flex-col pt-4 prose-h1:my-4">
+<main class="prose m-auto flex size-full max-w-4xl flex-col pt-4 prose-h1:my-4 prose-h1:text-3xl">
 	<div class="self-end">
-		<label for="country">Show for:</label>
+		<label class="pr-2" for="country">Show for:</label>
 		<select
 			id="country"
 			bind:value={selectedGender}
@@ -38,11 +38,8 @@
 	</div>
 	{#if selectedGender != null}
 		<h1>
-			DIFFERENCE IN AGE OF LABOUR MARKET EXIT FOR
-			<br />
-			<span class="uppercase">{selectedGender}</span> FROM OECD AVERAGE BY YEAR,
-			<br />
-			1972-2022
+			DIFFERENCE IN AGE OF LABOUR MARKET EXIT FOR <span class="uppercase">{selectedGender}</span> FROM
+			OECD AVERAGE BY YEAR, 1972-2022
 		</h1>
 	{/if}
 	{#await import('@viz/muze') then { default: muze }}
