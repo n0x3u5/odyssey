@@ -99,7 +99,7 @@
 	});
 </script>
 
-<div class="scatter size-full" bind:this={viz}></div>
+<div class="not-prose scatter grow" bind:this={viz}></div>
 
 <style>
 	div.scatter :global(g.muze-layer-point) {

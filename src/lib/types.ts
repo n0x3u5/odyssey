@@ -31,6 +31,7 @@ type Layer = {
 
 interface Canvas {
 	data(data: unknown): Canvas;
+	data(): DataModel;
 	rows(
 		rows:
 			| Array<string | { field: string; as: 'discrete' | 'continuous' }>
