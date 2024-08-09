@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
+	import type { DataModel as TDataModel } from './types';
 
 	type Muze = typeof import('@viz/muze').default;
 
@@ -14,6 +15,7 @@
 	} = $props();
 
 	const DataModel = $derived(muze.DataModel);
+	const html = $derived(muze.Operators.html);
 	const loadedData = $derived(DataModel.loadDataSync(data, schema));
 	const dm = $derived(
 		new DataModel(loadedData).calculateVariable(
@@ -66,16 +68,8 @@
 					},
 					y: {
 						showAxisName: false,
-						domain: [0, 50],
-						nice: false,
-						tickFormat: (
-							{ rawValue }: { rawValue: number },
-							{ context }: { context: { domain: () => [number, number] } }
-						) => {
-							const [d0, d1] = context.domain();
-							const diff = d1 - d0;
-							return ((rawValue / diff) * 100).toFixed(0) + '%';
-						}
+						domain: [0, 35],
+						nice: false
 					}
 				},
 				legend: {
@@ -90,6 +84,23 @@
 				},
 				gridLines: {
 					show: false
+				},
+				interaction: {
+					tooltip: {
+						formatter: ({ dataModel }: { dataModel: TDataModel }) => {
+							const ageGroup = dataModel.getField('Exit age group').data().at(0);
+							const year = dataModel.getField('avg(Year Int)').data().at(0);
+							const countryCount = dataModel.getField('count(DISTINCT Country)').data().at(0);
+
+							return html`<div class="flex flex-col gap-2 pb-2 pt-1 font-sans text-xs text-black">
+								<div>
+									<p class="font-bold">${year}</p>
+									<p>${ageGroup}</p>
+								</div>
+								<p>${countryCount} countries</p>
+							</div>`;
+						}
+					}
 				}
 			})
 			.color('Exit age group')
@@ -158,7 +169,12 @@
 	});
 </script>
 
-<div class="not-prose area grow" bind:this={viz}></div>
+<div class="flex grow items-end justify-end">
+	<span class="rotate-180 ps-8 text-xs" style="writing-mode: vertical-lr;">
+		COUNT OF OECD COUNTRIES →
+	</span>
+	<div class="not-prose area h-full grow" bind:this={viz}></div>
+</div>
 
 <style lang="postcss">
 	div.area :global(g.muze-layer-group g.muze-layer-area) {
