@@ -66,8 +66,20 @@
 	{@render children()}
 	<footer class="prose m-auto block w-full max-w-4xl">
 		<p class="text-right text-xs">
-			Data Source: OECD Data Explorer | Citations: OECD Pensions at a glance 2023 Report | Powered
-			by: Muze
+			{#if currentPage.name === 'scatter'}
+				Scatterplot inspiration:
+				<a
+					href="https://public.tableau.com/app/profile/varun.viz.vorkshop/viz/GenderWageGapinUKDiversityInData/UKWageGap"
+				>
+					Gender Wage Gap in UK
+				</a>
+				by Varun Jain |
+			{/if}
+			Data Source: OECD Data Explorer |
+			{#if currentPage.name === 'bar' || currentPage.name === 'dumbbell' || currentPage.name === 'lollipop'}
+				Citations: OECD Pensions at a glance 2023 Report |
+			{/if}
+			Powered by: Muze
 		</p>
 	</footer>
 </div>
